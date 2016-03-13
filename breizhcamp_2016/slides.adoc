@@ -8,9 +8,9 @@ Jean-Marc Meessen
 
 [%step]
 * Jean-Marc MEESSEN
-* Belgique
+* Bruxelles, Belgique
 * "Brol Engineer" @ Worldline-BE
-** Development Infrastructure Expert
+* (Development Infrastructure Expert)
 
 == Et vous ? ==
 
@@ -68,7 +68,7 @@ Actually things aren't that bad
 
 == !
 
-* J'estime que nous avons une responssabilité morale de rappeler les bonnes pratiques à nos managers.
+J'estime que nous avons une responssabilité morale de rappeler les bonnes pratiques à nos managers.
 
 
 
@@ -76,6 +76,29 @@ Actually things aren't that bad
 
 image::http://www.it-wars.com/images/cloudcomputing/docker-security.jpg[docker_shark,80%]
 
+== Rappel
+
+image::https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg[]
+
+== Quels sont les dangers ?
+
+[%step]
+* Kernel exploits
+* Denial of service attack
+* Container breakout
+* Poisoned images
+* Compromising Secrets
+
+[NOTE.speaker]
+--
+* Kernel exploits, as the kernel is shared, magnifying the importance of any vulnerabilities present in the kernel.
+* Denial of service attack: If one container can monopolize access to certain resources—including memory and more esoteric resources such as user IDs
+* Container breakout: any process that breaks out of the container will have the same privileges on the host as it did in the container
+* Poisoned images
+* Compromising Secrets: An attacker who can get access to this secret will also have access to the service.
+--
+
+== Deux grands types
 
 
 == Slide Five
