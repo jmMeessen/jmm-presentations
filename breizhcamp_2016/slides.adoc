@@ -1,0 +1,86 @@
+= Docker en Production ? Et la Sécurité ... ?
+Jean-Marc Meessen
+:backend: revealjs
+:revealjs_theme: league
+:revealjs_control: false
+
+== Bonjour ==
+
+[%step]
+* Jean-Marc MEESSEN
+* Belgique
+* "Brol Engineer" @ Worldline-BE
+** Development Infrastructure Expert
+
+== Et vous ? ==
+
+[%step]
+* developers ?
+* Ops ?
+* Securité ?
+* Manager ?
+
+[NOTE.speaker]
+--
+Actually things aren't that bad
+--
+
+== Et vous ? ==
+
+[%step]
+* expérience avec Docker ?
+** jamais entendu parlé ?
+** un peu expérimenté avec
+** l'utilise tout les jours
+
+[data-background="http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg"]
+== !
+
+
+== Docker en production ?
+
+Voilà en général la réaction...
+
+== !
+
+image::https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg[afraid,70%]
+
+== Le problème ==
+
+* La popularité de Docker est le reflet du désir de moins en moins de friction.
+* Sa facilité d'utilisation fait qu'on néglige les vérifications et les compromis.
+
+== !
+
+Et pourtant la *Sécurité* est importante.
+
+[NOTE.speaker]
+--
+Actually things aren't that bad
+--
+
+== Et pourquoi ? ==
+
+* Nos clients nous confient leurs systèmes / leurs données.
+* Il n'y a pas de sanctions pour les entreprises IT
+** seulement un coût
+** pas de principe "pollueur/payeur"
+
+== !
+
+* J'estime que nous avons une responssabilité morale de rappeler les bonnes pratiques à nos managers.
+
+
+
+== La situation de Docker
+
+image::http://www.it-wars.com/images/cloudcomputing/docker-security.jpg[docker_shark,80%]
+
+
+
+== Slide Five
+
+[source, language="perl"]
+----
+print "$0: hello world\n"
+----
