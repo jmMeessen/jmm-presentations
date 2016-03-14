@@ -84,7 +84,21 @@ image::images/docker_shark.jpg[docker_shark,80%]
 // source: https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg
 image::images/docker_overview.jpg[]
 
-== Quels sont les dangers ?
+== Que cherche-t-il ?
+
+// source: http://digitalhealthage.com/wp-content/uploads/2015/10/Dave-hacking-story.jpg
+image::images/hacker.jpg[]
+
+== Que cherche-t-il ?
+
+* Des données
+* Accéder à d'autres systèmes
+* Élévation de privilège
+
+// source: http://www.maxtechstore.com/images/treasure-chest.jpg
+image:images/treasure.jpg[treasure,300]
+
+== Les dangers avec Docker ?
 
 [%step]
 * Kernel exploits
@@ -102,8 +116,13 @@ image::images/docker_overview.jpg[]
 * Compromising Secrets: An attacker who can get access to this secret will also have access to the service.
 --
 
-== Deux grands types
+== Est-ce que Docker est secure ?
 
+Principale préoccupation:
+
+[%step]
+* Sortie du container (hosting ou mutualisation)
+* Image empoisonée
 
 == Slide Five
 
