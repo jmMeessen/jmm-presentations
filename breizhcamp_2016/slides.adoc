@@ -33,7 +33,8 @@ Actually things aren't that bad
 ** un peu expérimenté avec
 ** l'utilise tout les jours
 
-[data-background="http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg"]
+// source: http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg
+[data-background="images/problemes.jpg"]
 == !
 
 
@@ -43,7 +44,8 @@ Voilà en général la réaction...
 
 == !
 
-image::https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg[afraid,70%]
+// Source: https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg
+image::images/panique.jpg[afraid,70%]
 
 == Le problème ==
 
@@ -74,11 +76,13 @@ J'estime que nous avons une responssabilité morale de rappeler les bonnes prati
 
 == La situation de Docker
 
-image::http://www.it-wars.com/images/cloudcomputing/docker-security.jpg[docker_shark,80%]
+// source: http://www.it-wars.com/images/cloudcomputing/docker-security.jpg
+image::images/docker_shark.jpg[docker_shark,80%]
 
 == Rappel
 
-image::https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg[]
+// source: https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg
+image::images/docker_overview.jpg[]
 
 == Quels sont les dangers ?
 
