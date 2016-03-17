@@ -3,6 +3,7 @@ Jean-Marc Meessen
 :backend: revealjs
 :revealjs_theme: league
 :revealjs_control: false
+:revealjs_slideNumber: true
 
 == Bonjour ==
 
@@ -109,24 +110,95 @@ image:images/treasure.jpg[treasure,300]
 
 [NOTE.speaker]
 --
-* Kernel exploits, as the kernel is shared, magnifying the importance of any vulnerabilities present in the kernel.
-* Denial of service attack: If one container can monopolize access to certain resources—including memory and more esoteric resources such as user IDs
-* Container breakout: any process that breaks out of the container will have the same privileges on the host as it did in the container
+* Amplification.
+* un container peut tout bloquer
+* sortir
 * Poisoned images
-* Compromising Secrets: An attacker who can get access to this secret will also have access to the service.
+* access DB
 --
 
-== Est-ce que Docker est secure ?
+== Est-ce que Docker est "secure" ?
 
-Principale préoccupation:
+* Beaucoup d'attentes, d'illusions
+* "Silver bullet"
+* positionement de concurents (VM, Configuration Mgt)
+* jalousie
 
-[%step]
-* Sortie du container (hosting ou mutualisation)
-* Image empoisonée
+== Docker, Inc et la sécurité
 
-== Slide Five
+* La Sécurité (= operabilité) est une de leur préocupation fondamentale
+* Conscient de la jeunesse de la technologie
+* Très réactifs
+* Attitude positive sur l'approche
 
-[source, language="perl"]
-----
-print "$0: hello world\n"
-----
+== !
+
+image::images/docker_slide_1.jpg[]
+
+== !
+
+image::images/docker_slide_2.jpg[]
+
+== !
+
+image::images/docker_slide_3.jpg[]
+
+== "Container do not contain !"
+
+* perception erronée du "public"
+* Progrès énormes en 3 ans
+** mais utilisable...
+
+[NOTE.speaker]
+--
+utiliser techno pour ce qu'elle est
+préocupation initiale
+(early adopters en prod): env mutualisé/cloud
+--
+
+== !
+
+image::images/docker_overview.jpg[]
+
+== !
+
+image::images/docker_slide_4.jpg[]
+
+[NOTE.speaker]
+--
+* PID renumérotation des process
+--
+
+== !
+
+image::images/docker_slide_5.jpg[]
+
+== !
+
+image::images/docker_slide_6.jpg[]
+
+== En particulier
+
+* Cap drop
+* User namespace
+* selinux / apparmor
+
+== Demo usernamespace
+
+// source : http://techbeacon.com/sites/default/files/styles/article_main_image/public/9_0.jpg?itok=j6kSlRwH
+[data-background="images/container_wall.jpg"]
+== Des containers "propre" ?
+
+== !
+
+* contenus malveillants
+* Softs buggés ou vulnérables
+
+== Notary
+
+== Nautilus
+
+== Recommendations
+
+// source: http://hygiene-plus.com/wp-content/uploads/2014/08/IPRP_prevention_risque_salon_coiffure_institut_beaute_2.jpg
+image::images/prevention.jpg[prevention,550]
