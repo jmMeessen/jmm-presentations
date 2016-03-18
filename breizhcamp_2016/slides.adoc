@@ -13,6 +13,11 @@ Jean-Marc Meessen
 * "Brol Engineer" @ Worldline-BE
 * (Development Infrastructure Expert)
 
+== !
+// source: http://www.youtube.com/watch?v=ImKox57DJXI
+// source: http://www.coolfood.be/test/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/i/g/igl50150506_-_10_fish_sticks_300g_hr_selenium_13.jpg
+video::images/CaptainIglo.mp4[video, width=800, poster="images/fishSticks.jpg"]
+
 == Et vous ? ==
 
 [%step]
@@ -183,7 +188,22 @@ image::images/docker_slide_6.jpg[]
 * User namespace
 * selinux / apparmor
 
-== Demo usernamespace
+== Capability Drop
+
+* option du "Docker run"
+* vas au de la de la dichotomie root/non-root
+* exemple container avec NTP
+
+== User namespace
+
+// source: http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg
+image::images/demo.jpg[demo, 500]
+
+== Selinux / apparmor
+
+* profils appelés à chaque "Docker run"
+* permettent d'aller plus loin dans la granularité
+** tel programme (ex ping) n'a pas access au réseau
 
 // source : http://techbeacon.com/sites/default/files/styles/article_main_image/public/9_0.jpg?itok=j6kSlRwH
 [data-background="images/container_wall.jpg"]
@@ -191,14 +211,68 @@ image::images/docker_slide_6.jpg[]
 
 == !
 
-* contenus malveillants
-* Softs buggés ou vulnérables
+* Contenus malveillants
+* Contenus buggés ou vulnérables
+
+== Trusted Registry
+
+* Utilisation systématique de TLS
+* renforcement de l'identification des layers
+* upgrade avec la version 1.10
 
 == Notary
 
+* Système de signature d'images et de validation
+** vérification de l'auteur et non-altération du contenu
+* Protection Against Image Forgery
+* Protection Against Replay Attacks
+* Protection Against Key Compromise
+** Utilisation de support physique pour les clés
+
 == Nautilus
+
+* Scanner d'images Docker
+** Vulnerabilité (CVE check)
+** Validation des licenses
+** Optimisation des images
+** Tests fonctionnels simplifiés
 
 == Recommendations
 
 // source: http://hygiene-plus.com/wp-content/uploads/2014/08/IPRP_prevention_risque_salon_coiffure_institut_beaute_2.jpg
 image::images/prevention.jpg[prevention,550]
+
+== Recommendations
+
+* Maintenir votre host/images à jour
+* Cloisoner
+** partition Docker séparée
+** pas exploiter d'autres applis
+* Limiter les communications inter-container
+* logger/auditer
+* contrôle d'acces
+
+== Recommendations
+
+* Ne pas utiliser "priviliged" si c'est pas nécessaire
+* Users applicatifs dans les containers
+* d'où viennent mes images ? Sont elles à jour ?
+* permission sur les fichiers
+
+== Conclusions
+
+* "Docker est-il secure ?"
+** Pas plus ni moins que la porte d'un appartement
+* La sécurité est l'affaire de tous : DevOps + SecOps
+
+
+== Contact info
+
+image::images/capt_igloo_cleaned.jpg[captain, 200]
+
+* jean-marc@meessen-web.org
+* Twitter: @jm_meessen
+
+// source: http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg
+[data-background="images/questions.jpg"]
+== !
