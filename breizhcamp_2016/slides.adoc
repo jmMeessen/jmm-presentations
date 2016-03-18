@@ -229,6 +229,13 @@ image::images/demo.jpg[demo, 500]
 * Protection Against Key Compromise
 ** Utilisation de support physique pour les clés
 
+== Yubikey 4
+
+//source yubico
+image::images/yubikey1.png[]
+
+image::images/yubikey2.png[]
+
 == Nautilus
 
 * Scanner d'images Docker
