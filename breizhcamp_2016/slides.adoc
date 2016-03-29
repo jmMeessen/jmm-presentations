@@ -195,6 +195,10 @@ image::images/docker_slide_6.jpg[]
 * vas au de la de la dichotomie root/non-root
 * exemple container avec NTP
 
+----
+docker run --cap-drop ALL --cap-add SYS_TIME ntpd
+----
+
 == User namespace
 
 // source: http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg
@@ -205,6 +209,32 @@ image::images/demo.jpg[demo, 500]
 * profils appelés à chaque "Docker run"
 * permettent d'aller plus loin dans la granularité
 ** tel programme (ex ping) n'a pas accès au réseau
+
+== !
+
+----
+#include <tunables/global>
+
+profile docker-default flags=(attach_disconnected,mediate_deleted) {
+
+  #include <abstractions/base>
+
+  network,
+  capability,
+  file,
+  umount,
+
+  deny @{PROC}/{*,**^[0-9*],sys/kernel/shm*} wkx,
+  deny @{PROC}/sysrq-trigger rwklx,
+
+  deny mount,
+
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+}
+----
 
 // source : http://techbeacon.com/sites/default/files/styles/article_main_image/public/9_0.jpg?itok=j6kSlRwH
 [data-background="images/container_wall.jpg"]
@@ -252,20 +282,23 @@ image::images/prevention.jpg[prevention,550]
 
 == Recommandations
 
+[%step]
 * Maintenir votre host/images à jour
 * Cloisonner
-** partition Docker séparée
+** partition disque Docker séparée
 ** pas exploiter d'autres applis
+** Container dans une VM ?
 * Limiter les communications inter-container
 * logger/auditer
 * contrôle d'accès
 
 == Recommendations
 
+[%step]
 * Ne pas utiliser "priviliged" si c'est pas nécessaire
 * Users applicatifs dans les containers
 * d'où viennent mes images ? Sont elles à jour ?
-* permission sur les fichiers
+* permissions sur les fichiers
 
 == Conclusions
 
@@ -284,3 +317,21 @@ image::images/capt_igloo_cleaned.jpg[captain, 200]
 // source: http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg
 [data-background="images/questions.jpg"]
 == !
+
+== Crédits photographiques
+
+* http://www.youtube.com/watch?v=ImKox57DJXI[Vidéo Capt. Igloo]
+* http://www.coolfood.be/test/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/i/g/igl50150506_-_10_fish_sticks_300g_hr_selenium_13.jpg[Boite de fishSticks]
+* http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg[Question]
+* https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg[Panique]
+* http://www.it-wars.com/images/cloudcomputing/docker-security.jpg[Docker shark]
+* https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg[Docker overview]
+
+== Crédits photographiques - 2
+
+* http://digitalhealthage.com/wp-content/uploads/2015/10/Dave-hacking-story.jpg[Hacker]
+* http://www.maxtechstore.com/images/treasure-chest.jpg[Trésor]
+* Slides de la Keynote de Dockercon 2015 à Barcelone
+* http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg[Démo]
+* http://hygiene-plus.com/wp-content/uploads/2014/08/IPRP_prevention_risque_salon_coiffure_institut_beaute_2.jpg[prévention]
+* http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg[Question]
