@@ -9,7 +9,7 @@ build:
 
 show: stop
 	@docker run -d --name $(WEB_SRV_NAME) -v $(CURDIR):/www -p 80:80 fnichol/uhttpd >/dev/null
-	@echo http://$$(docker-machine ip 2>/dev/null):80/slides.html
+	@echo http://docker.local:80/slides.html
 
 stop:
 	@docker kill $(WEB_SRV_NAME) >/dev/null || :
