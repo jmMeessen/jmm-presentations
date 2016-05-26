@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Jean-Marc Meessen"><title>Docker en Production ? Et la Sécurité &#8230;&#8203; ?</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>Docker en Production ? Et la Sécurité &#8230;&#8203; ?</h1><p><small>Jean-Marc Meessen</small></p></section><section id="_bonjour"><h2>Bonjour</h2><div class="ulist"><ul><li class="fragment"><p>Jean-Marc MEESSEN</p></li><li class="fragment"><p>Bruxelles, Belgique</p></li><li class="fragment"><p>"Brol Engineer" @ Worldline-BE</p></li><li class="fragment"><p>(Development Infrastructure Expert)</p></li></ul></div></section>
+<section><div class="videoblock"><div class="content"><video src="images/CaptainIglo.mp4" width="800" poster="images/fishSticks.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
+<section id="_et_vous"><h2>Et vous ?</h2><div class="ulist"><ul><li class="fragment"><p>développeurs ?</p></li><li class="fragment"><p>Ops ?</p></li><li class="fragment"><p>Sécurité ?</p></li><li class="fragment"><p>Manager ?</p></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>Actually things aren&#8217;t that bad</p></div></aside></section>
+<section id="_vous_et_docker"><h2>Vous et Docker ?</h2><div class="ulist"><ul><li class="fragment"><p>Jamais entendu parlé ?</p></li><li class="fragment"><p>Quelques "Proof of Concept" ?</p></li><li class="fragment"><p>L&#8217;utilise tout les jours ?</p></li><li class="fragment"><p>En Production ?</p></li></ul></div></section>
+<section data-background="images/problemes.jpg"></section>
+<section id="_docker_en_production"><h2>Docker en production ?</h2><div class="paragraph"><p>Voilà en général la réaction&#8230;&#8203;</p></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/panique.jpg" alt="afraid" width="70%"></div></div></section>
+<section id="_le_problème"><h2>Le problème</h2><div class="ulist"><ul><li><p>La popularité de Docker est le reflet du <u>désir de moins en moins de friction</u>.</p></li><li><p>Sa facilité d&#8217;utilisation fait qu&#8217;on néglige les vérifications et les compromis.</p></li></ul></div></section>
+<section><div class="paragraph"><p>Et pourtant la <strong>Sécurité</strong> est importante.</p></div>
+<aside class="notes"><div class="paragraph"><p>Actually things aren&#8217;t that bad</p></div></aside></section>
+<section id="_et_pourquoi"><h2>Et pourquoi ?</h2><div class="ulist"><ul><li><p>Nos clients nous confient leurs systèmes / leurs données.</p></li><li><p>Il n&#8217;y a pas de sanctions pour les entreprises IT</p><div class="ulist"><ul><li><p>seulement un coût</p></li><li><p>pas de principe "pollueur/payeur"</p></li></ul></div></li></ul></div></section>
+<section><div class="paragraph"><p>J&#8217;estime que nous avons une responsabilité morale de rappeler les bonnes pratiques à nos managers.</p></div></section>
+<section id="_la_situation_de_docker"><h2>La situation de Docker</h2><div class="imageblock" style=""><div class="content"><img src="images/docker_shark.jpg" alt="docker_shark" width="80%"></div></div></section>
+<section id="_rappel"><h2>Rappel</h2><div class="imageblock" style=""><div class="content"><img src="images/docker_overview.jpg" alt="docker overview"></div></div></section>
+<section id="_que_cherche_t_il"><h2>Que cherche-t-il ?</h2><div class="imageblock" style=""><div class="content"><img src="images/hacker.jpg" alt="hacker"></div></div></section>
+<section id="_que_cherche_t_il_2"><h2>Que cherche-t-il ?</h2><div class="ulist"><ul><li><p>Des données</p></li><li><p>Accéder à d&#8217;autres systèmes</p></li><li><p>Élévation de privilège</p></li></ul></div>
+<div class="paragraph"><p><span class="image"><img src="images/treasure.jpg" alt="treasure" width="300"></span></p></div></section>
+<section id="_les_dangers_avec_docker"><h2>Les dangers avec Docker ?</h2><div class="ulist"><ul><li class="fragment"><p>Kernel exploits</p></li><li class="fragment"><p>Denial of service attack</p></li><li class="fragment"><p>Container breakout</p></li><li class="fragment"><p>Poisoned images</p></li><li class="fragment"><p>Compromising Secrets</p></li></ul></div>
+<aside class="notes"><div class="ulist"><ul><li><p>Amplification.</p></li><li><p>un container peut tout bloquer</p></li><li><p>sortir</p></li><li><p>Poisoned images</p></li><li><p>access DB</p></li></ul></div></aside></section>
+<section id="_est_ce_que_docker_est_secure"><h2>Est-ce que Docker est "secure" ?</h2><div class="ulist"><ul><li><p>Beaucoup d&#8217;attentes, d&#8217;illusions</p></li><li><p>"Silver bullet"</p></li><li><p>positionnement de concurrents (VM, Configuration Mgt)</p></li><li><p>jalousie</p></li></ul></div></section>
+<section id="_docker_inc_et_la_sécurité"><h2>Docker, Inc et la sécurité</h2><div class="ulist"><ul><li><p>La Sécurité (= opérabilité) est une de leur préoccupation fondamentale</p></li><li><p>Conscient de la jeunesse de la technologie</p></li><li><p>Très réactifs</p></li><li><p>Attitude positive sur l&#8217;approche</p></li></ul></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_1.jpg" alt="docker slide 1"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_2.jpg" alt="docker slide 2"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_3.jpg" alt="docker slide 3"></div></div></section>
+<section id="__container_do_not_contain"><h2>"Container do not contain !"</h2><div class="ulist"><ul><li><p>perception erronée du "public"</p></li><li><p>Progrès énormes en 3 ans</p><div class="ulist"><ul><li><p>mais utilisable&#8230;&#8203;</p></li></ul></div></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>utiliser techno pour ce qu&#8217;elle est
+préoccupation initiale
+(early adopters en prod): env mutualisé/cloud</p></div></aside></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_overview.jpg" alt="docker overview"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_4.jpg" alt="docker slide 4"></div></div>
+<aside class="notes"><div class="ulist"><ul><li><p>PID renumérotation des process</p></li></ul></div></aside></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_5.jpg" alt="docker slide 5"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_slide_6.jpg" alt="docker slide 6"></div></div></section>
+<section id="_en_particulier"><h2>En particulier</h2><div class="ulist"><ul><li><p>Cap drop</p></li><li><p>User namespace</p></li><li><p>selinux / apparmor</p></li></ul></div></section>
+<section id="_capability_drop"><h2>Capability Drop</h2><div class="ulist"><ul><li><p>option du "Docker run"</p></li><li><p>vas au de la de la dichotomie root/non-root</p></li><li><p>exemple container avec NTP</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code>docker run --cap-drop ALL --cap-add SYS_TIME ntpd</code></pre></div></div></section>
+<section id="_user_namespace"><h2>User namespace</h2><div class="imageblock" style=""><div class="content"><img src="images/demo.jpg" alt="demo" width="500"></div></div></section>
+<section id="_selinux_apparmor"><h2>Selinux / apparmor</h2><div class="ulist"><ul><li><p>profils appelés à chaque "Docker run"</p></li><li><p>permettent d&#8217;aller plus loin dans la granularité</p><div class="ulist"><ul><li><p>tel programme (ex ping) n&#8217;a pas accès au réseau</p></li></ul></div></li></ul></div></section>
+<section><div class="listingblock"><div class="content"><pre class="highlight"><code>#include &lt;tunables/global&gt;
+
+profile docker-default flags=(attach_disconnected,mediate_deleted) {
+
+  #include &lt;abstractions/base&gt;
+
+  network,
+  capability,
+  file,
+  umount,
+
+  deny @{PROC}/{*,**^[0-9*],sys/kernel/shm*} wkx,
+  deny @{PROC}/sysrq-trigger rwklx,
+
+  deny mount,
+
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+}</code></pre></div></div></section>
+<section id="_des_containers_propre" data-background="images/container_wall.jpg"><h2>Des containers "propre" ?</h2></section>
+<section><div class="ulist"><ul><li><p>Contenus malveillants</p></li><li><p>Contenus buggés ou vulnérables</p></li></ul></div></section>
+<section id="_trusted_registry"><h2>Trusted Registry</h2><div class="ulist"><ul><li><p>Utilisation systématique de TLS</p></li><li><p>renforcement de l&#8217;identification des layers</p></li><li><p>upgrade avec la version 1.10</p></li></ul></div></section>
+<section id="_notary"><h2>Notary</h2><div class="ulist"><ul><li><p>Système de signature d&#8217;images et de validation</p><div class="ulist"><ul><li><p>vérification de l&#8217;auteur et non-altération du contenu</p></li></ul></div></li><li><p>Protection Against Image Forgery</p></li><li><p>Protection Against Replay Attacks</p></li><li><p>Protection Against Key Compromise</p><div class="ulist"><ul><li><p>Utilisation de support physique pour les clés</p></li></ul></div></li></ul></div></section>
+<section id="_yubikey_4"><h2>Yubikey 4</h2><div class="imageblock" style=""><div class="content"><img src="images/yubikey1.png" alt="yubikey1"></div></div>
+<div class="imageblock" style=""><div class="content"><img src="images/yubikey2.png" alt="yubikey2"></div></div></section>
+<section id="_nautilus"><h2>Nautilus</h2><div class="ulist"><ul><li><p>Scanner d&#8217;images Docker</p><div class="ulist"><ul><li><p>Vulnérabilité (CVE check)</p></li><li><p>Validation des licences</p></li><li><p>Optimisation des images</p></li><li><p>Tests fonctionnels simplifiés</p></li></ul></div></li></ul></div></section>
+<section id="_recommendations"><h2>Recommendations</h2><div class="imageblock" style=""><div class="content"><img src="images/prevention.jpg" alt="prevention" width="550"></div></div></section>
+<section id="_recommandations"><h2>Recommandations</h2><div class="ulist"><ul><li class="fragment"><p>Maintenir votre host/images à jour</p></li><li class="fragment"><p>Cloisonner</p><div class="ulist"><ul><li><p>partition disque Docker séparée</p></li><li><p>pas exploiter d&#8217;autres applis</p></li><li><p>Container dans une VM ?</p></li></ul></div></li><li class="fragment"><p>Limiter les communications inter-container</p></li><li class="fragment"><p>logger/auditer</p></li><li class="fragment"><p>contrôle d&#8217;accès</p></li></ul></div></section>
+<section id="_recommendations_2"><h2>Recommendations</h2><div class="ulist"><ul><li class="fragment"><p>Ne pas utiliser "priviliged" si c&#8217;est pas nécessaire</p></li><li class="fragment"><p>Users applicatifs dans les containers</p></li><li class="fragment"><p>d&#8217;où viennent mes images ? Sont elles à jour ?</p></li><li class="fragment"><p>permissions sur les fichiers</p></li></ul></div></section>
+<section id="_conclusions"><h2>Conclusions</h2><div class="ulist"><ul><li><p>"Docker est-il 'secure' ?"</p><div class="ulist"><ul><li><p>Pas plus ni moins que la porte d&#8217;un appartement</p></li></ul></div></li><li><p>La sécurité est l&#8217;affaire de tous : DevOps + SecOps</p></li></ul></div></section>
+<section id="_contact_info"><h2>Contact info</h2><div class="imageblock" style=""><div class="content"><img src="images/capt_igloo_cleaned.jpg" alt="captain" width="200"></div></div>
+<div class="ulist"><ul><li><p><a href="mailto:jean-marc@meessen-web.org">jean-marc@meessen-web.org</a></p></li><li><p>Twitter: @jm_meessen</p></li></ul></div></section>
+<section data-background="images/questions.jpg"></section>
+<section id="_crédits_photographiques"><h2>Crédits photographiques</h2><div class="ulist"><ul><li><p><a href="http://www.youtube.com/watch?v=ImKox57DJXI">Vidéo Capt. Igloo</a></p></li><li><p><a href="http://www.coolfood.be/test/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/i/g/igl50150506_-_10_fish_sticks_300g_hr_selenium_13.jpg">Boite de fishSticks</a></p></li><li><p><a href="http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg">Question</a></p></li><li><p><a href="https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg">Panique</a></p></li><li><p><a href="http://www.it-wars.com/images/cloudcomputing/docker-security.jpg">Docker shark</a></p></li><li><p><a href="https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg">Docker overview</a></p></li></ul></div></section>
+<section id="_crédits_photographiques_2"><h2>Crédits photographiques - 2</h2><div class="ulist"><ul><li><p><a href="http://digitalhealthage.com/wp-content/uploads/2015/10/Dave-hacking-story.jpg">Hacker</a></p></li><li><p><a href="http://www.maxtechstore.com/images/treasure-chest.jpg">Trésor</a></p></li><li><p>Slides de la Keynote de Dockercon 2015 à Barcelone</p></li><li><p><a href="http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg">Démo</a></p></li><li><p><a href="http://hygiene-plus.com/wp-content/uploads/2014/08/IPRP_prevention_risque_salon_coiffure_institut_beaute_2.jpg">prévention</a></p></li><li><p><a href="http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg">Question</a></p></li></ul></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: false,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'league',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'slide',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 960,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>
