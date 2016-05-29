@@ -5,7 +5,7 @@ Jean-Marc Meessen
 :revealjs_control: false
 :revealjs_slideNumber: true
 
-== Bonjour ==
+== Hello ! ==
 
 [%step]
 * Jean-Marc MEESSEN
@@ -18,7 +18,7 @@ Jean-Marc Meessen
 // source: http://www.coolfood.be/test/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/i/g/igl50150506_-_10_fish_sticks_300g_hr_selenium_13.jpg
 video::images/CaptainIglo.mp4[video, width=800, poster="images/fishSticks.jpg"]
 
-== Et vous ? ==
+== And you ? ==
 
 [%step]
 * Developers ?
@@ -203,6 +203,15 @@ docker run --cap-drop ALL --cap-add SYS_TIME ntpd
 
 // source: http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg
 image::images/demo.jpg[demo, 500]
+
+== Without User namespace
+
+video::images/userns_demo1.mp4[video, width=100%, poster="images/demo.jpg"]
+
+== With User namespace
+
+video::images/userns_demo2.mp4[video, width=100%, poster="images/demo.jpg"]
+
 
 == Selinux / apparmor
 
