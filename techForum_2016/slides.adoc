@@ -1,4 +1,4 @@
-= Docker en Production ? Et la Sécurité ... ?
+= Docker in Production ? And what about Security ... ?
 Jean-Marc Meessen
 :backend: revealjs
 :revealjs_theme: league
@@ -10,7 +10,7 @@ Jean-Marc Meessen
 [%step]
 * Jean-Marc MEESSEN
 * Bruxelles, Belgique
-* "Brol Engineer" @ Worldline-BE
+* EWC-FPL-Be Middleware developer
 * (Development Infrastructure Expert)
 
 == !
@@ -21,23 +21,23 @@ video::images/CaptainIglo.mp4[video, width=800, poster="images/fishSticks.jpg"]
 == Et vous ? ==
 
 [%step]
-* développeurs ?
+* Developers ?
 * Ops ?
-* Sécurité ?
-* Manager ?
+* Security ?
+* Managers ?
 
 [NOTE.speaker]
 --
 Actually things aren't that bad
 --
 
-== Vous et Docker ? ==
+== You and Docker ? ==
 
 [%step]
-* Jamais entendu parlé ?
-* Quelques "Proof of Concept" ?
-* L'utilise tout les jours ?
-* En Production ?
+* Never heard about it ?
+* Some "Proof of Concept" ?
+* USe it every day ?
+* In Production ?
 
 
 // source: http://www.echecparadisfiscaux.ca/wp-content/uploads/2013/04/les-problemes.jpg
@@ -45,67 +45,67 @@ Actually things aren't that bad
 == !
 
 
-== Docker en production ?
+== Docker in production ?
 
-Voilà en général la réaction...
+This is, in general, the reaction...
 
 == !
 
 // Source: https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg
 image::images/panique.jpg[afraid,70%]
 
-== Le problème ==
+== The problem ==
 
-* La popularité de Docker est le reflet du pass:[<u>désir de moins en moins de friction</u>].
-* Sa facilité d'utilisation fait qu'on néglige les vérifications et les compromis.
+* Docker's popularity reflects the pass:[<u>quest for less and less friction</u>].
+* Its ease of use leads to compromises and to neglect verification.
 
 == !
 
-Et pourtant la *Sécurité* est importante.
+And yet *Security* is important.
 
 [NOTE.speaker]
 --
 Actually things aren't that bad
 --
 
-== Et pourquoi ? ==
+== And why ? ==
 
-* Nos clients nous confient leurs systèmes / leurs données.
-* Il n'y a pas de sanctions pour les entreprises IT
-** seulement un coût
-** pas de principe "pollueur/payeur"
+* Our customers entrust us their systems / their data.
+* No sanctions for failing Companies
+** security is only seen as a cost
+** no "polluter pays" principle
 
 == !
 
-J'estime que nous avons une responsabilité morale de rappeler les bonnes pratiques à nos managers.
+I believe that we have a moral responsibility to remind our managers of the good (security) practices.
 
 
 
-== La situation de Docker
+== the situation with Docker
 
 // source: http://www.it-wars.com/images/cloudcomputing/docker-security.jpg
 image::images/docker_shark.jpg[docker_shark,80%]
 
-== Rappel
+== Reminder
 
 // source: https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg
 image::images/docker_overview.jpg[]
 
-== Que cherche-t-il ?
+== What is he looking for?
 
 // source: http://digitalhealthage.com/wp-content/uploads/2015/10/Dave-hacking-story.jpg
 image::images/hacker.jpg[]
 
-== Que cherche-t-il ?
+== What is he looking for?
 
-* Des données
-* Accéder à d'autres systèmes
-* Élévation de privilège
+* (user) Data
+* Access other systems
+* Privilege elevation
 
 // source: http://www.maxtechstore.com/images/treasure-chest.jpg
 image:images/treasure.jpg[treasure,300]
 
-== Les dangers avec Docker ?
+== What are the dangers with Docker?
 
 [%step]
 * Kernel exploits
@@ -123,19 +123,19 @@ image:images/treasure.jpg[treasure,300]
 * access DB
 --
 
-== Est-ce que Docker est "secure" ?
+== Is Docker "secure" ?
 
-* Beaucoup d'attentes, d'illusions
+* A lot of expectations, of illusions
 * "Silver bullet"
-* positionnement de concurrents (VM, Configuration Mgt)
-* jalousie
+* Competition positioning (VM, Configuration Mgt)
+* Enviousness
 
-== Docker, Inc et la sécurité
+== Docker, Inc and security
 
-* La Sécurité (= opérabilité) est une de leur préoccupation fondamentale
-* Conscient de la jeunesse de la technologie
-* Très réactifs
-* Attitude positive sur l'approche
+* Security (= operability) is one of their fundamental preoccupation
+* Aware of the youth of the technology
+* Very reactive
+* Positive attitude in the approach
 
 == !
 
@@ -151,9 +151,9 @@ image::images/docker_slide_3.jpg[]
 
 == "Container do not contain !"
 
-* perception erronée du "public"
-* Progrès énormes en 3 ans
-** mais utilisable...
+* Wrong perception by the "public"
+* Tremendous progress in 3 years
+** but usable...
 
 [NOTE.speaker]
 --
@@ -183,7 +183,7 @@ image::images/docker_slide_5.jpg[]
 
 image::images/docker_slide_6.jpg[]
 
-== En particulier
+== In particular
 
 * Cap drop
 * User namespace
@@ -191,9 +191,9 @@ image::images/docker_slide_6.jpg[]
 
 == Capability Drop
 
-* option du "Docker run"
-* vas au de la de la dichotomie root/non-root
-* exemple container avec NTP
+* options to the "Docker run"
+* goes beyond the root/non-root dichotomy
+* example: container with NTP
 
 ----
 docker run --cap-drop ALL --cap-add SYS_TIME ntpd
@@ -206,9 +206,9 @@ image::images/demo.jpg[demo, 500]
 
 == Selinux / apparmor
 
-* profils appelés à chaque "Docker run"
-* permettent d'aller plus loin dans la granularité
-** tel programme (ex ping) n'a pas accès au réseau
+* profiles are called at each "Docker run"
+* Allow to go much further in the granularity
+** this program (ex ping) has no access to the network
 
 == !
 
@@ -238,27 +238,27 @@ profile docker-default flags=(attach_disconnected,mediate_deleted) {
 
 // source : http://techbeacon.com/sites/default/files/styles/article_main_image/public/9_0.jpg?itok=j6kSlRwH
 [data-background="images/container_wall.jpg"]
-== Des containers "propre" ?
+== "Clean" containers?
 
 == !
 
-* Contenus malveillants
-* Contenus buggés ou vulnérables
+* Malicious contents
+* Contains vulnerabilities or bugged applications
 
 == Trusted Registry
 
-* Utilisation systématique de TLS
-* renforcement de l'identification des layers
-* upgrade avec la version 1.10
+* Systematic use of TLS
+* Re-enforcement of the layers integrity
+* Upgraded with version 1.10
 
 == Notary
 
-* Système de signature d'images et de validation
-** vérification de l'auteur et non-altération du contenu
+* System of image signature and its validation
+** Validation of the author and content non alteration
 * Protection Against Image Forgery
 * Protection Against Replay Attacks
 * Protection Against Key Compromise
-** Utilisation de support physique pour les clés
+** Clever usage of physical key storage
 
 == Yubikey 4
 
@@ -269,49 +269,49 @@ image::images/yubikey2.png[]
 
 == Nautilus
 
-* Scanner d'images Docker
-** Vulnérabilité (CVE check)
-** Validation des licences
-** Optimisation des images
-** Tests fonctionnels simplifiés
+* Docker image scanner
+** vulnerabilities (CVE check)
+** Licence validation
+** Image Optimisation
+** Simplified functional tests
 
 == Recommendations
 
 // source: http://hygiene-plus.com/wp-content/uploads/2014/08/IPRP_prevention_risque_salon_coiffure_institut_beaute_2.jpg
 image::images/prevention.jpg[prevention,550]
 
-== Recommandations
+== Recommendations
 
 [%step]
-* Maintenir votre host/images à jour
-* Cloisonner
-** partition disque Docker séparée
-** pas exploiter d'autres applis
-** Container dans une VM ?
-* Limiter les communications inter-container
-* logger/auditer
-* contrôle d'accès
+* Keep your host/images up-to-date
+* "Bulkheading"
+** Seperate disk partition for Docker
+** Don't run other (non-Docker) applications on the same host
+** Container in a VM ?
+* Limit inter-container communications
+* log/audit trails
+* Access control
 
 == Recommendations
 
 [%step]
-* Ne pas utiliser "priviliged" si c'est pas nécessaire
-* Users applicatifs dans les containers
-* d'où viennent mes images ? Sont elles à jour ?
-* permissions sur les fichiers
+* Do not use "priviliged" if it is not necessary
+* Applicative users in the containers
+* Where are my images coming from ? are they up-to-date ?
+* Access rights on the files
 
 == Conclusions
 
-* "Docker est-il 'secure' ?"
-** Pas plus ni moins que la porte d'un appartement
-* La sécurité est l'affaire de tous : DevOps + SecOps
+* "Is Docker 'secure' ?"
+** No more or less then the door of an apartment
+* Security is everyone's business : DevOps + SecOps
 
 
 == Contact info
 
 image::images/capt_igloo_cleaned.jpg[captain, 200]
 
-* jean-marc@meessen-web.org
+* jeanmarc.meessen@worldline.com
 * Twitter: @jm_meessen
 
 // source: http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg
