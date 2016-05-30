@@ -1,6 +1,6 @@
 .PHONY: build show stop
 
-WEB_SRV_NAME = breizh_web
+WEB_SRV_NAME = techforum_web
 
 all: build
 
