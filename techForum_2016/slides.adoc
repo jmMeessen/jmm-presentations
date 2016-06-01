@@ -9,7 +9,7 @@ Jean-Marc Meessen
 
 [%step]
 * Jean-Marc MEESSEN
-* Brussels, Belgium
+* Bruxelles, Belgique
 * EWC-FPL-Be Middleware developer
 * (Development Infrastructure Expert)
 
@@ -278,11 +278,34 @@ image::images/yubikey2.png[]
 
 == Nautilus
 
+* (now called "Docker Security Scanning")
 * Docker image scanner
 ** vulnerabilities (CVE check)
 ** Licence validation
 ** Image Optimisation
 ** Simplified functional tests
+
+== Docker Inc's strategy
+* Secure Platform
+* Secure Content
+* Secure Access
+
+== Secure Platform
+* Secure Platform
+** All available isolation containment
+** Default security settings and profiles
+** Docker Bench
+
+== Secure Content
+* Secure Content
+** Docker Content Trust
+** Security Scanning
+
+== Secure Access
+* Secure Access
+** Role Based Access control
+** AD/LDAP integration
+** Authentication plugins
 
 == Recommendations
 
