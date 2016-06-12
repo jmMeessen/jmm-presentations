@@ -1,6 +1,6 @@
 .PHONY: build show stop
 
-WEB_SRV_NAME = techforum_web
+WEB_SRV_NAME = docker_intro
 
 all: build
 
@@ -9,7 +9,7 @@ build:
 
 show: stop
 	@docker run -d --name $(WEB_SRV_NAME) -v $(CURDIR):/www -p 80:80 fnichol/uhttpd >/dev/null
-	@echo http://docker.local:80/slides.html
+	@echo http://localhost:80/slides.html
 
 stop:
 	@docker kill $(WEB_SRV_NAME) >/dev/null || :
