@@ -75,7 +75,6 @@ Actually things aren't that bad
 * What are "containers" ?
 * How to start ?
 * "Build, Ship and Run"
-* Docker in Production ?
 * Where is Docker heading ?
 
 [data-background="images/ContainerBackground.jpg"]
@@ -105,6 +104,12 @@ image::images\Transport-Multimodal-Service.jpg[width=80%]
 
 A novel way to manipulate applications and their dependencies.
 
+== Containers are :
+
+* Isolated namespace (process, users, network, cgroups, etc)
+* Lightweight "virtualized servers"
+* A new artifact paradigm
+
 == !
 
 image::images/docker_overview.jpg[]
@@ -112,27 +117,48 @@ image::images/docker_overview.jpg[]
 [NOTE.speaker]
 --
 Draw the attention on the Docker process.
+Containers are old, LXC (OpenVZ) been around for some time.
 --
 
-// ====================================
+== Container load fast
 
+== Package application with dependencies
+
+* one application works on Ubuntu with Python 2
+* second application works on Centos 7 with Python 3
 
 == !
 
-image::images/docker_slide_4.jpg[]
+** Container can run and then exit
+** Container can in background (daemon)
 
-[NOTE.speaker]
---
-* PID renumérotation des process
---
+== Demo
 
+
+== What Docker solves
+
+* Escape the dependencies hell
+** isolates from conflicting libraries
+* fast iterative Infrastructure improvement
+* Container loader & Container shipper
+** (no more "it worked in Dev, now it's OPS problem")
+* easy onboarding of Devs.
+
+[data-background="images/ContainerBackground.jpg"]
 == !
 
-image::images/docker_slide_5.jpg[]
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How to start ?</p>]
 
+[data-background="images/ContainerBackground.jpg"]
 == !
 
-image::images/docker_slide_6.jpg[]
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">"Build, Ship and Run"</p>]
+
+
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Where is Docker heading ?</p>]
 
 
 == Contact info
