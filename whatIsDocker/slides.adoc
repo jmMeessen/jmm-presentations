@@ -100,11 +100,7 @@ image::images\theBox.png[width=80%]
 
 image::images\Transport-Multimodal-Service.jpg[width=80%]
 
-== Docker containers
-
-A novel way to manipulate applications and their dependencies.
-
-== Containers are :
+== Docker Containers are :
 
 * Isolated namespace (process, users, network, cgroups, etc)
 * Lightweight "virtualized servers"
@@ -116,18 +112,17 @@ image::images/docker_overview.jpg[]
 
 [NOTE.speaker]
 --
-Draw the attention on the Docker process.
-Containers are old, LXC (OpenVZ) been around for some time.
+- Draw the attention on the Docker process.
+- Containers are old, LXC (OpenVZ) been around for some time.
+- Container load fast
 --
 
-== Container load fast
-
-== Package application with dependencies
+== Applications packaged with system dependencies
 
 * one application works on Ubuntu with Python 2
-* second application works on Centos 7 with Python 3
+* second application works on Centos 7.2 with Python 3
 
-== !
+== Execution mode
 
 ** Container can run and then exit
 ** Container can in background (daemon)
@@ -137,17 +132,74 @@ Containers are old, LXC (OpenVZ) been around for some time.
 
 == What Docker solves
 
+[%step]
 * Escape the dependencies hell
-** isolates from conflicting libraries
-* fast iterative Infrastructure improvement
-* Container loader & Container shipper
+* Fast iterative Infrastructure improvement
+* Container "loader" & Container "shipper"
 ** (no more "it worked in Dev, now it's OPS problem")
 * easy onboarding of Devs.
+* "Own test environment"
 
 [data-background="images/ContainerBackground.jpg"]
 == !
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How to start ?</p>]
+
+== Need a container enabled "Kernel"
+
+== Linux or Windows 10 (beta)
+
+== Install the Docker "daemon"
+
+== Docker client
+
+* Run, stop, halt
+* Remove stopped container
+* Examine logs
+* etc.
+
+== And for Windows or Mac OS X ?
+
+[%step]
+* Install a virtual machine (ex VirtualBox)
+* Ready made bundles:
+** Docker Toolbox
+** New, better integrated, clients
+* Using (corporate) proxies: advanced topic
+
+== Then you need images
+
+[%step]
+* Note: an image is immutable
+* you get them from
+** DockerHub
+** Corporate Registry
+* Or build it yourself
+
+== Building a Docker Image
+
+* Described in a Dockerfile
+
+== !
+
+[source, language="Dockerfile"]
+----
+FROM ubuntu
+MAINTAINER Kimbro Staken
+
+RUN apt-get install -y software-properties-common python
+RUN add-apt-repository ppa:chris-lea/node.js
+RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ precise universe" >> /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y nodejs
+#RUN apt-get install -y nodejs=0.6.12~dfsg1-1ubuntu1
+RUN mkdir /var/www
+
+ADD app.js /var/www/app.js
+
+CMD ["/usr/bin/node", "/var/www/app.js"]
+----
+
 
 [data-background="images/ContainerBackground.jpg"]
 == !
