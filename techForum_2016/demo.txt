@@ -1,0 +1,2 @@
+docker run --rm -v /Users/jmm/work/jmm-presentations/techForum_2016:/documents/ jmm/asciidoctor asciidoctor --trace -T /asciidoctor-backends/slim/revealjs ./slides.adoc
+docker run -d --name techforum -v /Users/jmm/work/jmm-presentations/techForum_2016:/www -p 81:80 fnichol/uhttpd

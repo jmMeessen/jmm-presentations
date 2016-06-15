@@ -9,6 +9,13 @@ Jean-Marc Meessen
 
 image::images/I-have_a_dream.jpg[width=100%]
 
+[NOTE.speaker]
+--
+I have a dream ....
+
+(I have many dreams)
+--
+
 == !
 
 pass:[<p style="font-size:250%">I &nbsp;&nbsp; <u>had</u> &nbsp;&nbsp; a dream !</p>]
