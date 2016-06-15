@@ -74,7 +74,6 @@ Actually things aren't that bad
 
 * What are "containers" ?
 * How to start ?
-* "Build, Ship and Run"
 * Where is Docker heading ?
 
 [data-background="images/ContainerBackground.jpg"]
@@ -153,7 +152,7 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 == Docker client
 
-* Run, stop, halt
+* Run, stop, halt container
 * Remove stopped container
 * Examine logs
 * etc.
@@ -200,24 +199,75 @@ ADD app.js /var/www/app.js
 CMD ["/usr/bin/node", "/var/www/app.js"]
 ----
 
+== Describe a complete Infrastructure
 
-[data-background="images/ContainerBackground.jpg"]
-== !
+* Complex systems
+** Fuse ESB server
+** MQ series servers
+** Oracle database
+* Use "docker-compose"
 
-pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">"Build, Ship and Run"</p>]
+== docker-compose
 
+* one place to define
+** your components
+** how to (docker) build them
+** what container should start first
+** networks (who can talk to whom)
+** (data) volumes
+** Security restrictions
+** Etc.
+
+== "Build, Ship and Run"
+
+[NOTE.speaker]
+--
+- Build: easier to build application
+- Ship: easier/faster to package and deploy apps
+- Run: easier for microservices/cloud/orchestration
+--
 
 [data-background="images/ContainerBackground.jpg"]
 == !
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Where is Docker heading ?</p>]
 
+== Docker Inc.
+
+[%step]
+* Docker has been surprised by this techno "flare"
+* Very, very lively Open Source community
+* "Batteries included"
+* Standardization (RunC, etc.)
+
+== Well grounded approach
+
+* Coming from the hosting world
+
+image::images/docker_unusable_scy.jpg[width=80%]
+
+== Status
+
+* Was good for development and integration
+* Start to be usable for Real Life Run
+** Since December 2015
+
+== Status
+
+* Start to offer enterprise level solutions
+** "Docker Datacenter"
+*** Trusted Registry (Image scanning, sig/auth)
+*** Docker Universal Control Plane
+** Docker Cloud
+
+
+== Thank You !
 
 == Contact info
 
 image::images/capt_igloo_cleaned.jpg[captain, 200]
 
-* jeanmarc.meessen@worldline.com
+* jean-marc@meessen-web.org
 * Twitter: @jm_meessen
 
 // source: http://www.dokeos.com/wp-content/uploads/2014/06/29-questions-test-Dokeos-EN.jpg

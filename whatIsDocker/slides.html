@@ -9,7 +9,7 @@
 <section id="_and_you"><h2>And you ?</h2><div class="ulist"><ul><li class="fragment"><p>Developers ?</p></li><li class="fragment"><p>Ops ?</p></li><li class="fragment"><p>Security ?</p></li><li class="fragment"><p>Managers ?</p></li></ul></div>
 <aside class="notes"><div class="paragraph"><p>Actually things aren&#8217;t that bad</p></div></aside></section>
 <section id="_you_and_docker"><h2>You and Docker ?</h2><div class="ulist"><ul><li class="fragment"><p>Never heard about it ?</p></li><li class="fragment"><p>Some "Proof of Concept" ?</p></li><li class="fragment"><p>Use it every day ?</p></li><li class="fragment"><p>In Production ?</p></li></ul></div></section>
-<section id="_today_s_talk"><h2>Today&#8217;s talk</h2><div class="ulist"><ul><li><p>What are "containers" ?</p></li><li><p>How to start ?</p></li><li><p>"Build, Ship and Run"</p></li><li><p>Where is Docker heading ?</p></li></ul></div></section>
+<section id="_today_s_talk"><h2>Today&#8217;s talk</h2><div class="ulist"><ul><li><p>What are "containers" ?</p></li><li><p>How to start ?</p></li><li><p>Where is Docker heading ?</p></li></ul></div></section>
 <section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">What are "containers" ?</p></p></div></section>
 <section><div class="imageblock" style=""><div class="content"><img src="images/loadingBarrels.jpg" alt="images\loadingBarrels" width="80%"></div></div>
 <aside class="notes"><div class="paragraph"><p>Docker Container is an analogy to the revolution in the Shipping industry brought by the container.</p></div></aside></section>
@@ -26,7 +26,7 @@
 <section id="_need_a_container_enabled_kernel"><h2>Need a container enabled "Kernel"</h2></section>
 <section id="_linux_or_windows_10_beta"><h2>Linux or Windows 10 (beta)</h2></section>
 <section id="_install_the_docker_daemon"><h2>Install the Docker "daemon"</h2></section>
-<section id="_docker_client"><h2>Docker client</h2><div class="ulist"><ul><li><p>Run, stop, halt</p></li><li><p>Remove stopped container</p></li><li><p>Examine logs</p></li><li><p>etc.</p></li></ul></div></section>
+<section id="_docker_client"><h2>Docker client</h2><div class="ulist"><ul><li><p>Run, stop, halt container</p></li><li><p>Remove stopped container</p></li><li><p>Examine logs</p></li><li><p>etc.</p></li></ul></div></section>
 <section id="_and_for_windows_or_mac_os_x"><h2>And for Windows or Mac OS X ?</h2><div class="ulist"><ul><li class="fragment"><p>Install a virtual machine (ex VirtualBox)</p></li><li class="fragment"><p>Ready made bundles:</p><div class="ulist"><ul><li><p>Docker Toolbox</p></li><li><p>New, better integrated, clients</p></li></ul></div></li><li class="fragment"><p>Using (corporate) proxies: advanced topic</p></li></ul></div></section>
 <section id="_then_you_need_images"><h2>Then you need images</h2><div class="ulist"><ul><li class="fragment"><p>Note: an image is immutable</p></li><li class="fragment"><p>you get them from</p><div class="ulist"><ul><li><p>DockerHub</p></li><li><p>Corporate Registry</p></li></ul></div></li><li class="fragment"><p>Or build it yourself</p></li></ul></div></section>
 <section id="_building_a_docker_image"><h2>Building a Docker Image</h2><div class="ulist"><ul><li><p>Described in a Dockerfile</p></li></ul></div></section>
@@ -44,10 +44,18 @@ RUN mkdir /var/www
 ADD app.js /var/www/app.js
 
 CMD ["/usr/bin/node", "/var/www/app.js"]</code></pre></div></div></section>
-<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">"Build, Ship and Run"</p></p></div></section>
+<section id="_describe_a_complete_infrastructure"><h2>Describe a complete Infrastructure</h2><div class="ulist"><ul><li><p>Complex systems</p><div class="ulist"><ul><li><p>Fuse ESB server</p></li><li><p>MQ series servers</p></li><li><p>Oracle database</p></li></ul></div></li><li><p>Use "docker-compose"</p></li></ul></div></section>
+<section id="_docker_compose"><h2>docker-compose</h2><div class="ulist"><ul><li><p>one place to define</p><div class="ulist"><ul><li><p>your components</p></li><li><p>how to (docker) build them</p></li><li><p>what container should start first</p></li><li><p>networks (who can talk to whom)</p></li><li><p>(data) volumes</p></li><li><p>Security restrictions</p></li><li><p>Etc.</p></li></ul></div></li></ul></div></section>
+<section id="__build_ship_and_run"><h2>"Build, Ship and Run"</h2><aside class="notes"><div class="ulist"><ul><li><p>Build: easier to build application</p></li><li><p>Ship: easier/faster to package and deploy apps</p></li><li><p>Run: easier for microservices/cloud/orchestration</p></li></ul></div></aside></section>
 <section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Where is Docker heading ?</p></p></div></section>
+<section id="_docker_inc"><h2>Docker Inc.</h2><div class="ulist"><ul><li class="fragment"><p>Docker has been surprised by this techno "flare"</p></li><li class="fragment"><p>Very, very lively Open Source community</p></li><li class="fragment"><p>"Batteries included"</p></li><li class="fragment"><p>Standardization (RunC, etc.)</p></li></ul></div></section>
+<section id="_well_grounded_approach"><h2>Well grounded approach</h2><div class="ulist"><ul><li><p>Coming from the hosting world</p></li></ul></div>
+<div class="imageblock" style=""><div class="content"><img src="images/docker_unusable_scy.jpg" alt="docker unusable scy" width="80%"></div></div></section>
+<section id="_status"><h2>Status</h2><div class="ulist"><ul><li><p>Was good for development and integration</p></li><li><p>Start to be usable for Real Life Run</p><div class="ulist"><ul><li><p>Since December 2015</p></li></ul></div></li></ul></div></section>
+<section id="_status_2"><h2>Status</h2><div class="ulist"><ul><li><p>Start to offer enterprise level solutions</p><div class="ulist"><ul><li><p>"Docker Datacenter"</p><div class="ulist"><ul><li><p>Trusted Registry (Image scanning, sig/auth)</p></li><li><p>Docker Universal Control Plane</p></li></ul></div></li><li><p>Docker Cloud</p></li></ul></div></li></ul></div></section>
+<section id="_thank_you"><h2>Thank You !</h2></section>
 <section id="_contact_info"><h2>Contact info</h2><div class="imageblock" style=""><div class="content"><img src="images/capt_igloo_cleaned.jpg" alt="captain" width="200"></div></div>
-<div class="ulist"><ul><li><p><a href="mailto:jeanmarc.meessen@worldline.com">jeanmarc.meessen@worldline.com</a></p></li><li><p>Twitter: @jm_meessen</p></li></ul></div></section>
+<div class="ulist"><ul><li><p><a href="mailto:jean-marc@meessen-web.org">jean-marc@meessen-web.org</a></p></li><li><p>Twitter: @jm_meessen</p></li></ul></div></section>
 <section data-background="images/questions.jpg"></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
