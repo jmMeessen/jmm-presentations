@@ -23,12 +23,17 @@ pass:[<p style="font-size:250%">I &nbsp;&nbsp; <u>had</u> &nbsp;&nbsp; a dream !
 == !
 
 * My own copy of the database
-* My own test environment
+** ... that I can break at will
+* My own iso-prod test environment
+** ... that I can break at will
+* Easily share my configuration with colleagues.
+* pass:[<p style="font-size:150%">DEVOPS !</p>]
 
 
 [NOTE.speaker]
 --
 That I don't fear to break !
+DEVOPS is a culture.
 --
 
 
@@ -46,10 +51,11 @@ pass:[<p style="font-size:250%">...And it became true !</p>]
 [%step]
 * Jean-Marc MEESSEN
 * Brussels, Belgium
-* "Brol" engineer
+* "Brol Engineer" @ Worldline
 ** Senior ESB Java Developer
 ** Development Infrastructure Expert
 ** Mentor
+* Starting in January at Cloudbees
 
 == !
 // source: http://www.youtube.com/watch?v=ImKox57DJXI
@@ -81,7 +87,7 @@ Actually things aren't that bad
 
 * What are "containers" ?
 * How to start ?
-* Where is Docker heading ?
+* Docker for the Java Dev
 
 [data-background="images/ContainerBackground.jpg"]
 == !

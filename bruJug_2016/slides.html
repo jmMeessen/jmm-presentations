@@ -2,16 +2,17 @@
 <aside class="notes"><div class="paragraph"><p>I have a dream &#8230;&#8203;.</p></div>
 <div class="paragraph"><p>(I have many dreams)</p></div></aside></section>
 <section><div class="paragraph"><p><p style="font-size:250%">I &nbsp;&nbsp; <u>had</u> &nbsp;&nbsp; a dream !</p></p></div></section>
-<section><div class="ulist"><ul><li><p>My own copy of the database</p></li><li><p>My own test environment</p></li></ul></div>
-<aside class="notes"><div class="paragraph"><p>That I don&#8217;t fear to break !</p></div></aside></section>
+<section><div class="ulist"><ul><li><p>My own copy of the database</p><div class="ulist"><ul><li><p>&#8230;&#8203; that I can break at will</p></li></ul></div></li><li><p>My own iso-prod test environment</p><div class="ulist"><ul><li><p>&#8230;&#8203; that I can break at will</p></li></ul></div></li><li><p>Easily share my configuration with colleagues.</p></li><li><p><p style="font-size:150%">DEVOPS !</p></p></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>That I don&#8217;t fear to break !
+DEVOPS is a culture.</p></div></aside></section>
 <section><div class="paragraph"><p><p style="font-size:250%">...And it became true !</p></p></div></section>
 <section data-background="images/docker_toolbox.png"></section>
-<section id="_hello"><h2>Hello !</h2><div class="ulist"><ul><li class="fragment"><p>Jean-Marc MEESSEN</p></li><li class="fragment"><p>Brussels, Belgium</p></li><li class="fragment"><p>"Brol" engineer</p><div class="ulist"><ul><li><p>Senior ESB Java Developer</p></li><li><p>Development Infrastructure Expert</p></li><li><p>Mentor</p></li></ul></div></li></ul></div></section>
-<section><div class="videoblock"><div class="content"><video src="images/CaptainIglo.mp4" width="800" poster="images/fishSticks.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
+<section id="_hello"><h2>Hello !</h2><div class="ulist"><ul><li class="fragment"><p>Jean-Marc MEESSEN</p></li><li class="fragment"><p>Brussels, Belgium</p></li><li class="fragment"><p>"Brol Engineer" @ Worldline</p><div class="ulist"><ul><li><p>Senior ESB Java Developer</p></li><li><p>Development Infrastructure Expert</p></li><li><p>Mentor</p></li></ul></div></li><li class="fragment"><p>Starting in January at Cloudbees</p></li></ul></div></section>
+<section><div class="videoblock"><div class="content"><video data-autoplay src="images/CaptainIglo.mp4" width="800" poster="images/fishSticks.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
 <section id="_and_you"><h2>And you ?</h2><div class="ulist"><ul><li class="fragment"><p>Developers ?</p></li><li class="fragment"><p>Ops ?</p></li><li class="fragment"><p>Security ?</p></li><li class="fragment"><p>Managers ?</p></li></ul></div>
 <aside class="notes"><div class="paragraph"><p>Actually things aren&#8217;t that bad</p></div></aside></section>
 <section id="_you_and_docker"><h2>You and Docker ?</h2><div class="ulist"><ul><li class="fragment"><p>Never heard about it ?</p></li><li class="fragment"><p>Some "Proof of Concept" ?</p></li><li class="fragment"><p>Use it every day ?</p></li><li class="fragment"><p>In Production ?</p></li></ul></div></section>
-<section id="_today_s_talk"><h2>Today&#8217;s talk</h2><div class="ulist"><ul><li><p>What are "containers" ?</p></li><li><p>How to start ?</p></li><li><p>Where is Docker heading ?</p></li></ul></div></section>
+<section id="_today_s_talk"><h2>Today&#8217;s talk</h2><div class="ulist"><ul><li><p>What are "containers" ?</p></li><li><p>How to start ?</p></li><li><p>Docker for the Java Dev</p></li></ul></div></section>
 <section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">What are "containers" ?</p></p></div></section>
 <section><div class="imageblock" style=""><div class="content"><img src="images/loadingBarrels.jpg" alt="images\loadingBarrels" width="80%"></div></div>
 <aside class="notes"><div class="paragraph"><p>Docker Container is an analogy to the revolution in the Shipping industry brought by the container.</p></div></aside></section>
@@ -87,8 +88,8 @@ préoccupation initiale
 <section id="_capability_drop"><h2>Capability Drop</h2><div class="ulist"><ul><li><p>options to the "Docker run"</p></li><li><p>goes beyond the root/non-root dichotomy</p></li><li><p>example: container with NTP</p></li></ul></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code>docker run --cap-drop ALL --cap-add SYS_TIME ntpd</code></pre></div></div></section>
 <section id="_user_namespace"><h2>User namespace</h2><div class="imageblock" style=""><div class="content"><img src="images/demo.jpg" alt="demo" width="500"></div></div></section>
-<section id="_without_user_namespace"><h2>Without User namespace</h2><div class="videoblock"><div class="content"><video src="images/userns_demo1.mp4" width="100%" poster="images/demo.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
-<section id="_with_user_namespace"><h2>With User namespace</h2><div class="videoblock"><div class="content"><video src="images/userns_demo2.mp4" width="100%" poster="images/demo.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
+<section id="_without_user_namespace"><h2>Without User namespace</h2><div class="videoblock"><div class="content"><video data-autoplay src="images/userns_demo1.mp4" width="100%" poster="images/demo.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
+<section id="_with_user_namespace"><h2>With User namespace</h2><div class="videoblock"><div class="content"><video data-autoplay src="images/userns_demo2.mp4" width="100%" poster="images/demo.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
 <section id="_selinux_apparmor"><h2>Selinux / apparmor</h2><div class="ulist"><ul><li><p>profiles are called at each "Docker run"</p></li><li><p>Allow to go much further in the granularity</p><div class="ulist"><ul><li><p>this program (ex ping) has no access to the network</p></li></ul></div></li></ul></div></section>
 <section><div class="listingblock"><div class="content"><pre class="highlight"><code>#include &lt;tunables/global&gt;
 
