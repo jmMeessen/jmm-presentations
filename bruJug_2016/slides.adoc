@@ -112,11 +112,19 @@ image::images\theBox.png[width=80%]
 
 image::images\Transport-Multimodal-Service.jpg[width=80%]
 
+== Docker Containers
+
+* is not a virtualization technique,
+* rather an *isolation* technology.
+
 == Docker Containers are :
 
-* Isolated namespace (process, users, network, cgroups, etc)
-* Lightweight "virtualized servers"
-* A new artifact paradigm
+[%step]
+* cgroups (control groups)
+** limits CPU, memory, IOs, etc
+* NameSpaces
+** isolates and virtualizes system resources
+*** (process, mounts, networking)
 
 == !
 
@@ -131,16 +139,9 @@ image::images/docker_overview.jpg[]
 
 == Applications packaged with system dependencies
 
+* new packaging paradigm
 * one application works on Ubuntu with Python 2
 * second application works on Centos 7.2 with Python 3
-
-== Execution mode
-
-** Container can run and then exit
-** Container can in background (daemon)
-
-== Demo
-
 
 == What Docker solves
 
@@ -152,6 +153,8 @@ image::images/docker_overview.jpg[]
 * easy onboarding of Devs.
 * "Own test environment"
 
+
+
 [data-background="images/ContainerBackground.jpg"]
 == !
 
@@ -159,16 +162,6 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 == Need a container enabled "Kernel"
 
-== Linux or Windows 10 (beta)
-
-== Install the Docker "daemon"
-
-== Docker client
-
-* Run, stop, halt container
-* Remove stopped container
-* Examine logs
-* etc.
 
 == And for Windows or Mac OS X ?
 
@@ -179,7 +172,16 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 ** New, better integrated, clients
 * Using (corporate) proxies: advanced topic
 
-== Then you need images
+
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How does it work ?</p>]
+
+== Let me show you ....
+
+
+== How do you get images ?
 
 [%step]
 * Note: an image is immutable
@@ -231,7 +233,10 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
 ** Security restrictions
 ** Etc.
 
+//todo:
 == "Build, Ship and Run"
+
+image::images/buildShipRun.png[width=80%]
 
 [NOTE.speaker]
 --
@@ -239,6 +244,23 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
 - Ship: easier/faster to package and deploy apps
 - Run: easier for microservices/cloud/orchestration
 --
+
+== How to learn ?
+
+* Many tutorials available on-line
+* https://training.docker.com/category/self-paced-online
+** Developer
+*** Beginner Linux Containers
+*** Beginner Windows Containers
+*** Intermediate (both Linux and Windows)
+** Operations
+*** Beginner
+*** Intermediate
+
+== How to learn ?
+
+* Docker playground
+** http://play-with-docker.com/
 
 [data-background="images/ContainerBackground.jpg"]
 == !
@@ -276,7 +298,24 @@ image::images/docker_unusable_scy.jpg[width=80%]
 [data-background=white]
 == !
 
-== Docker in production ?
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Docker for Java builders</p>]
+
+//TODO: explain the Maven Plugin
+
+//TODO: explain experiences about running JVM containers
+
+
+
+//TODO: filter out
+
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Is Docker secure in Production ?</p>]
+== Is Docker secure in production ?
 
 This is, in general, the reaction...
 
@@ -285,38 +324,11 @@ This is, in general, the reaction...
 // Source: https://bobstechsite.com/wp-content/uploads/2013/12/d8a448abb3779dd23ea09d0d8ac2475b2aeb2687.jpg
 image::images/panique.jpg[afraid,70%]
 
-== The problem ==
-
-* Docker's popularity reflects the pass:[<u>quest for less and less friction</u>].
-* Its ease of use leads to compromises and to neglect verification.
-
-== !
-
-And yet *Security* is important.
-
-
-== And why ? ==
-
-* Our customers entrust us their systems / their data.
-* No sanctions for failing Companies
-** security is only seen as a cost
-** no "polluter pays" principle
-
-== !
-
-I believe that we have a moral responsibility to remind our managers of the good (security) practices.
-
-
 
 == the situation with Docker
 
 // source: http://www.it-wars.com/images/cloudcomputing/docker-security.jpg
 image::images/docker_shark.jpg[docker_shark,80%]
-
-== Reminder
-
-// source: https://media.licdn.com/mpr/mpr/shrinknp_800_800/AAEAAQAAAAAAAAQzAAAAJDY1YTU3M2NkLTc3OTEtNGQ1My1iMDkyLTFmNDUzMzc5MmZjNQ.jpg
-image::images/docker_overview.jpg[]
 
 == What is he looking for?
 
@@ -357,25 +369,6 @@ image:images/treasure.jpg[treasure,300]
 * Competition positioning (VM, Configuration Mgt)
 * Enviousness
 
-== Docker, Inc and security
-
-* Security (= operability) is one of their fundamental preoccupation
-* Aware of the youth of the technology
-* Very reactive
-* Positive attitude in the approach
-
-== !
-
-image::images/docker_slide_1.jpg[]
-
-== !
-
-image::images/docker_slide_2.jpg[]
-
-== !
-
-image::images/docker_slide_3.jpg[]
-
 == "Container do not contain !"
 
 * Wrong perception by the "public"
@@ -389,26 +382,7 @@ préoccupation initiale
 (early adopters en prod): env mutualisé/cloud
 --
 
-== !
-
-image::images/docker_overview.jpg[]
-
-== !
-
-image::images/docker_slide_4.jpg[]
-
-[NOTE.speaker]
---
-* PID renumérotation des process
---
-
-== !
-
-image::images/docker_slide_5.jpg[]
-
-== !
-
-image::images/docker_slide_6.jpg[]
+== Equipped with security tools
 
 == In particular
 
@@ -425,20 +399,6 @@ image::images/docker_slide_6.jpg[]
 ----
 docker run --cap-drop ALL --cap-add SYS_TIME ntpd
 ----
-
-== User namespace
-
-// source: http://forex-ecole.com/wp-content/uploads/2015/07/requst-a-demo.jpg
-image::images/demo.jpg[demo, 500]
-
-== Without User namespace
-
-video::images/userns_demo1.mp4[video, width=100%, poster="images/demo.jpg"]
-
-== With User namespace
-
-video::images/userns_demo2.mp4[video, width=100%, poster="images/demo.jpg"]
-
 
 == Selinux / apparmor
 
@@ -496,12 +456,6 @@ profile docker-default flags=(attach_disconnected,mediate_deleted) {
 * Protection Against Key Compromise
 ** Clever usage of physical key storage
 
-== Yubikey 4
-
-//source yubico
-image::images/yubikey1.png[]
-
-image::images/yubikey2.png[]
 
 == Nautilus
 
@@ -512,27 +466,6 @@ image::images/yubikey2.png[]
 ** Image Optimisation
 ** Simplified functional tests
 
-== Docker Inc's strategy
-* Secure Platform
-* Secure Content
-* Secure Access
-
-== Secure Platform
-* Secure Platform
-** All available isolation containment
-** Default security settings and profiles
-** Docker Bench
-
-== Secure Content
-* Secure Content
-** Docker Content Trust
-** Security Scanning
-
-== Secure Access
-* Secure Access
-** Role Based Access control
-** AD/LDAP integration
-** Authentication plugins
 
 == Recommendations
 
