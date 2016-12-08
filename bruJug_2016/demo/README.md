@@ -1,18 +1,23 @@
-Simple run
+# Simple run
 
-docker run alpine echo "hello class"
+* docker run alpine echo "hello class"
 
-docker run alpine cat /etc/os-release
+## different distro
 
-docker run debian:jessie cat /etc/os-release
+* docker run alpine cat /etc/os-release
 
-docker build -t demo:latest .
+* docker run debian:jessie cat /etc/os-release
 
-docker run -d demo:latest
 
-docker ps
+## More complicated 
 
-docker logs 
+* docker build -t demo:latest .
 
-docker stop
+* docker run -d demo:latest
+
+* docker ps
+
+* docker logs 
+
+* docker stop
 

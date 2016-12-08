@@ -277,7 +277,7 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 == Well grounded approach
 
-* Coming from the hosting world
+* Coming from the web hosting world
 
 image::images/docker_unusable_scy.jpg[width=80%]
 
@@ -305,27 +305,27 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 == integration tests
 
-image::images/SystemUnderTest.png[width=80%]
+image::images/SytemUnderTest.png[width=110%]
 
 == maven integration
 
 * using `fabric8io/docker-maven-plugin`
-* sequence:
-** pre-integration-test
-*** execute Docker "build" and "start" goals
-*** execute FlyWay migration
-** integration-test
-*** execute Failsafe "verify" goal
-*** integration test make extensive use of DBunit
-** post-integration-test
-*** execute Docker "stop" goal
+
+== maven sequence
+
+* pre-integration-test
+** execute Docker "build" and "start" goals
+** execute FlyWay migration
+* integration-test
+** execute Failsafe "verify" goal
+** integration test make extensive use of DBunit
+* post-integration-test
+** execute Docker "stop" goal
 
 == Maven integration
 
 * additional options
-** networking
-** volumes
-** docker-compose
+** (networking, volumes, docker-compose)
 * fits nicely in Jenkins
 ** especially V2 and pipeline
 ** (but this is an other story)
@@ -352,8 +352,10 @@ image::images/SystemUnderTest.png[width=80%]
 
 == single purpose JVM
 
-* thinks it is alone in the world (JVM defaults are picked up on the machine characteristics)
-* watch out when several JVMs (in Docker) are running on the same machine
+* thinks it is alone in the world
+** JVM defaults based on the machine characteristics
+* watch out
+** several JVMs (in Docker) are running on the same machine
 
 == JVM configuration
 
@@ -361,6 +363,8 @@ image::images/SystemUnderTest.png[width=80%]
 ** Docker offer the same tools. use them
 ** orchestrator like mesos or kubernetes can help you for this
 * beware of Docker exec in Production
+
+== Docker in Production
 * my point of view of Docker in Production
 ** you need to have a very good understanding of what you do
 ** still in the early phase
@@ -368,13 +372,13 @@ image::images/SystemUnderTest.png[width=80%]
 ** State full (with databases, etc) still in infancy. Recent announcement very promising
 
 
-//TODO: filter out
 
 [data-background="images/ContainerBackground.jpg"]
 == !
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Is Docker secure in Production ?</p>]
-== Is Docker secure in production ?
+
+== !
 
 This is, in general, the reaction...
 

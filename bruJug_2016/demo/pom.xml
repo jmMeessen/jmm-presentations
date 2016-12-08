@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ S.A. WORLDLINE N.V., 2010 - 2015. All rights reserved.
+  ~
+  ~ ***************************************************************************
+  ~ The information contained in this document is subject to change without
+  ~ notice and should not be construed as a commitment by WORLDLINE.
+  ~
+  ~ WORLDLINE assumes no responsibility for any errors or omissions that
+  ~ may appear in this document.
+  ~
+  ~ The contents of this document must not be reproduced in any form
+  ~ whatsoever, by or on behalf of third parties, without the prior written
+  ~ consent of WORLDLINE.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>pct-v2</artifactId>
+        <groupId>org.worldline.wlsi.pct</groupId>
+        <version>1.2.9-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--TODO: Clean and validate all the POM's-->
+
+    <artifactId>WorkFlow</artifactId>
+    <name>PCT-V2 :: WorkFlow</name>
+    <packaging>bundle</packaging>
+
+    <properties>
+        <bundle.import.package>
+            org.apache.openjpa.persistence,
+            org.apache.openjpa.persistence.criteria,
+            org.apache.openjpa.persistence.query,
+            org.apache.openjpa.kernel.exps,
+            org.apache.openjpa.lib.util,
+            org.apache.openjpa.lib.util.concurrent,
+            org.apache.openjpa.conf,
+            org.apache.commons.collections.set,
+            org.springframework.stereotype,
+            org.springframework.aop,
+            org.springframework.aop.framework,
+            org.aopalliance.aop,
+            javax.persistence.criteria,
+            javax.persistence.metamodel,
+            javax.persistence.spi,
+            org.worldline.wlsi.pct.pctMessage,
+            *
+        </bundle.import.package>
+        <bundle.export.package />
+        <bundle.private.package>
+            org.worldline.wlsi.pct.*
+        </bundle.private.package>
+        <bundle.include.resource />
+        <bundle.embeded.dependency />
+
+        <docker.autoPull>true</docker.autoPull>
+        <jolokia.version>1.2.2</jolokia.version>
+
+        <docker.host>${env.DOCKER_HOST}</docker.host>
+        <pct.docker.ports.db>${env.PCT_DB_PORT}</pct.docker.ports.db>
+        <pct.docker.db_url>${env.PCT_DB_URL}</pct.docker.db_url>
+
+        <!--TODO:upgrade to 0.15.9-->
+        <docker.maven.plugin.version>0.14.0</docker.maven.plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <com.oracle.ojdbc14.version>10.2.0.4</com.oracle.ojdbc14.version>
+        <com.oracle.ojdbc.version>11.2.0.2.0</com.oracle.ojdbc.version>
+        <com.oracle.oracle-all>11.2.0.2.0</com.oracle.oracle-all>
+        <org.dbunit.version>2.5.0</org.dbunit.version>
+        <com.googlecode.catch-exception.version>1.2.0</com.googlecode.catch-exception.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.worldline.wlsi.pct</groupId>
+            <artifactId>pctMessage</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>be.awl.clearing.dep</groupId>
+            <artifactId>DEPhandler</artifactId>
+            <version>${DEPhandler.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jms</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa</artifactId>
+            <version>${org.apache.openjpa.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-servlet</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache-extras.camel-extra</groupId>
+            <artifactId>camel-jboss</artifactId>
+            <version>${org.apache.camel.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>com.springsource.javax.inject</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>be.awl.ecs.si.repository</groupId>
+            <artifactId>spec</artifactId>
+            <version>${be.awl.ecs.si.repository.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${com.google.guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.catch-exception</groupId>
+            <artifactId>catch-exception</artifactId>
+            <version>${com.googlecode.catch-exception.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>be.awl.ecs.si.repository</groupId>
+            <artifactId>mongo-implementation</artifactId>
+            <version>${be.awl.ecs.si.repository.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.awl.ecs.si.commons</groupId>
+            <artifactId>commons-tools</artifactId>
+            <version>${be.awl.ecs.si.commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${com.oracle.ojdbc.version}</version>
+            <scope>test</scope>
+        </dependency>
+<!--
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>oracle-all</artifactId>
+            <version>${com.oracle.oracle-all}</version>
+        </dependency>
+-->
+
+        <!-- test -->
+
+        <dependency>
+            <groupId>org.worldline.wlsi.pct</groupId>
+            <artifactId>simulator</artifactId>
+            <!--FIXME Hardcoded dependency-->
+            <version>1.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring</artifactId>
+            <version>${org.apache.camel.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>be.awl.ecs.si.commons</groupId>
+            <artifactId>commons-camel</artifactId>
+            <version>${be.awl.ecs.si.commons.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${org.springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.kubek2k</groupId>
+            <artifactId>springockito</artifactId>
+            <version>1.0.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xmlunit</groupId>
+            <artifactId>xmlunit</artifactId>
+            <version>1.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!--        <dependency>
+                    <groupId>org.apache.openjpa</groupId>
+                    <artifactId>openjpa</artifactId>
+                    <version>${org.apache.openjpa.version}</version>
+                </dependency>-->
+        <dependency>
+            <groupId>org.apache.openjpa</groupId>
+            <artifactId>openjpa-all</artifactId>
+            <version>${org.apache.openjpa.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${org.dbunit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.mq</groupId>
+            <artifactId>mq-jms</artifactId>
+            <version>7.0.1.8</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>withIntegrationTest</id>
+            <!--These tests can come in the way of somebody that doesn't have a docker ready environment. So it is better
+            to give a way to skip them-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${docker.maven.plugin.version}</version>
+                        <configuration>
+                            <logDate>default</logDate>
+                            <!-- Other configurations are picked up from environment variables -->
+                            <registry>docker-registry-testing.svc.meshcore.net</registry>
+                            <images>
+                                <!-- Docker Image to use -->
+                                <image>
+                                    <alias>ODS_DB</alias>
+                                    <!-- Artefact Image-->
+                                    <name>sandbox/oracle-xe-11g:latest</name>
+                                    <run>
+                                        <ports>
+                                            <port>49160:22</port>
+                                            <port>49161:1521</port>
+                                            <port>49162:8080</port>
+                                        </ports>
+                                        <wait>
+                                            <!-- Waits for 30 seconds for the server to start -->
+                                            <time>30000</time>
+                                        </wait>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+
+                        <executions>
+                            <!-- Connect this plugin to the maven lifecycle around the integration-test phase.
+                            I.e. start the container in pre-integration-test and stop it in post-integration-test. -->
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-maven-plugin</artifactId>
+                        <version>3.1</version>
+                        <configuration>
+                            <url>${pct.docker.db_url}</url>
+                            <user>system</user>
+                            <password>oracle</password>
+                            <schemas>
+                                <schema>FLYWAY</schema>
+                            </schemas>
+                            <baselineOnMigrate>true</baselineOnMigrate>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>dbSetup</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>migrate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.13</version>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <goals>
+                                    <!--Run integration tests-->
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <!--Verify that integration tests ran-->
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <!--These are the build steps that are profile independent-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.6.201602180812</version>
+                <configuration>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.openjpa</groupId>
+                <artifactId>openjpa-maven-plugin</artifactId>
+                <version>2.2.0</version>
+
+                <configuration>
+                    <includes>**/database/*.class</includes>
+                    <addDefaultConstructor>true</addDefaultConstructor>
+                    <enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>enhancer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa</artifactId>
+                        <!-- set the version to be the same as the level in your runtime -->
+                        <version>2.2.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
