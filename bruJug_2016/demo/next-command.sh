@@ -1,7 +1,9 @@
 #! /bin/bash
 
-# TODO: reset work file to a specified command number
+# See https://github.com/jmMeessen/next-command for more details
 
+# TODO: reset work file to a specified command number
+# TODO: Allow comments in command file
 
 # if the variable is not set, bail out
 if [ -z ${command_list+x} ]; then
