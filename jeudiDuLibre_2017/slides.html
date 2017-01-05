@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="author" content="Jean-Marc Meessen"><title>What is this "Docker" ?</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section><h1>What is this "Docker" ?</h1><p><small>Jean-Marc Meessen</small></p></section><section><div class="imageblock" style=""><div class="content"><img src="images/I-have_a_dream.jpg" alt="I have a dream" width="100%"></div></div>
+<aside class="notes"><div class="paragraph"><p>I have a dream &#8230;&#8203;.</p></div>
+<div class="paragraph"><p>(I have many dreams)</p></div></aside></section>
+<section><div class="paragraph"><p><p style="font-size:250%">I &nbsp;&nbsp; <u>had</u> &nbsp;&nbsp; a dream !</p></p></div></section>
+<section><div class="ulist"><ul><li><p>My own copy of the database</p><div class="ulist"><ul><li><p>&#8230;&#8203; that I can break at will</p></li></ul></div></li><li><p>My own iso-prod test environment</p><div class="ulist"><ul><li><p>&#8230;&#8203; that I can break at will</p></li></ul></div></li><li><p>Easily share my configuration with colleagues.</p></li><li><p><p style="font-size:150%">DEVOPS !</p></p></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>That I don&#8217;t fear to break !
+DEVOPS is a culture.</p></div></aside></section>
+<section><div class="paragraph"><p><p style="font-size:250%">...And it became true !</p></p></div></section>
+<section data-background="images/docker_toolbox.png"></section>
+<section id="_hello"><h2>Hello !</h2><div class="ulist"><ul><li class="fragment"><p>Jean-Marc MEESSEN</p></li><li class="fragment"><p>Brussels, Belgium</p></li><li class="fragment"><p>"Brol Engineer" @ Worldline</p><div class="ulist"><ul><li><p>Senior ESB Java Developer</p></li><li><p>Development Infrastructure Expert</p></li><li><p>Mentor</p></li></ul></div></li><li class="fragment"><p>Starting in January at Cloudbees</p></li></ul></div></section>
+<section><div class="videoblock"><div class="content"><video data-autoplay src="images/CaptainIglo.mp4" width="800" poster="images/fishSticks.jpg" controls>Your browser does not support the video tag.</video></div></div></section>
+<section id="_and_you"><h2>And you ?</h2><div class="ulist"><ul><li class="fragment"><p>Developers ?</p></li><li class="fragment"><p>Ops ?</p></li><li class="fragment"><p>Security ?</p></li><li class="fragment"><p>Managers ?</p></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>Actually things aren&#8217;t that bad</p></div></aside></section>
+<section id="_you_and_docker"><h2>You and Docker ?</h2><div class="ulist"><ul><li class="fragment"><p>Never heard about it ?</p></li><li class="fragment"><p>Some "Proof of Concept" ?</p></li><li class="fragment"><p>Use it every day ?</p></li><li class="fragment"><p>In Production ?</p></li></ul></div></section>
+<section id="_today_s_talk"><h2>Today&#8217;s talk</h2><div class="ulist"><ul><li><p>What are "containers" ?</p></li><li><p>How to start ?</p></li><li><p>Docker for the Java Dev</p></li></ul></div></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">What are "containers" ?</p></p></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/loadingBarrels.jpg" alt="images\loadingBarrels" width="80%"></div></div>
+<aside class="notes"><div class="paragraph"><p>Docker Container is an analogy to the revolution in the Shipping industry brought by the container.</p></div></aside></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/theBox.png" alt="images\theBox" width="80%"></div></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/Transport-Multimodal-Service.jpg" alt="images\Transport Multimodal Service" width="80%"></div></div></section>
+<section id="_docker_containers"><h2>Docker Containers</h2><div class="ulist"><ul><li><p>is not a virtualization technique,</p></li><li><p>rather an <strong>isolation</strong> technology.</p></li></ul></div></section>
+<section id="_docker_containers_are"><h2>Docker Containers are :</h2><div class="ulist"><ul><li class="fragment"><p>cgroups (control groups)</p><div class="ulist"><ul><li><p>limits CPU, memory, IOs, etc</p></li></ul></div></li><li class="fragment"><p>NameSpaces</p><div class="ulist"><ul><li><p>isolates and virtualizes system resources</p><div class="ulist"><ul><li><p>(process, mounts, networking)</p></li></ul></div></li></ul></div></li></ul></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/docker_overview.jpg" alt="docker overview"></div></div>
+<aside class="notes"><div class="ulist"><ul><li><p>Draw the attention on the Docker process.</p></li><li><p>Containers are old, LXC (OpenVZ) been around for some time.</p></li><li><p>Container load fast</p></li></ul></div></aside></section>
+<section id="_applications_packaged_with_system_dependencies"><h2>Applications packaged with system dependencies</h2><div class="ulist"><ul><li><p>new packaging paradigm</p></li><li><p>one application works on Ubuntu with Python 2</p></li><li><p>second application works on Centos 7.2 with Python 3</p></li></ul></div></section>
+<section id="_what_docker_solves"><h2>What Docker solves</h2><div class="ulist"><ul><li class="fragment"><p>Escape the dependencies hell</p></li><li class="fragment"><p>Fast iterative Infrastructure improvement</p></li><li class="fragment"><p>Container "loader" &amp; Container "shipper"</p><div class="ulist"><ul><li><p>(no more "it worked in Dev, now it&#8217;s OPS problem")</p></li></ul></div></li><li class="fragment"><p>easy onboarding of Devs.</p></li><li class="fragment"><p>"Own test environment"</p></li></ul></div></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How to start ?</p></p></div></section>
+<section id="_need_a_container_enabled_kernel"><h2>Need a container enabled "Kernel"</h2></section>
+<section id="_and_for_windows_or_mac_os_x"><h2>And for Windows or Mac OS X ?</h2><div class="ulist"><ul><li class="fragment"><p>Install a virtual machine (ex VirtualBox)</p></li><li class="fragment"><p>Ready made bundles:</p><div class="ulist"><ul><li><p>Docker Toolbox</p></li><li><p>New, better integrated, clients</p></li></ul></div></li><li class="fragment"><p>Using (corporate) proxies: advanced topic</p></li></ul></div></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How does it work ?</p></p></div></section>
+<section id="_let_me_show_you"><h2>Let me show you &#8230;&#8203;.</h2></section>
+<section id="_how_do_you_get_images"><h2>How do you get images ?</h2><div class="ulist"><ul><li class="fragment"><p>Note: an image is immutable</p></li><li class="fragment"><p>you get them from</p><div class="ulist"><ul><li><p>DockerHub</p></li><li><p>Corporate Registry</p></li></ul></div></li><li class="fragment"><p>Or build it yourself</p></li></ul></div></section>
+<section id="_building_a_docker_image"><h2>Building a Docker Image</h2><div class="ulist"><ul><li><p>Described in a Dockerfile</p></li></ul></div></section>
+<section><div class="listingblock"><div class="content"><pre class="highlight"><code class="Dockerfile language-Dockerfile">FROM ubuntu
+MAINTAINER Kimbro Staken
+
+RUN apt-get install -y software-properties-common python
+RUN add-apt-repository ppa:chris-lea/node.js
+RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ precise universe" &gt;&gt; /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y nodejs
+#RUN apt-get install -y nodejs=0.6.12~dfsg1-1ubuntu1
+RUN mkdir /var/www
+
+ADD app.js /var/www/app.js
+
+CMD ["/usr/bin/node", "/var/www/app.js"]</code></pre></div></div></section>
+<section id="_describe_a_complete_infrastructure"><h2>Describe a complete Infrastructure</h2><div class="ulist"><ul><li><p>Complex systems</p><div class="ulist"><ul><li><p>Fuse ESB server</p></li><li><p>MQ series servers</p></li><li><p>Oracle database</p></li></ul></div></li><li><p>Use "docker-compose"</p></li></ul></div></section>
+<section id="_docker_compose"><h2>docker-compose</h2><div class="ulist"><ul><li><p>one place to define</p><div class="ulist"><ul><li><p>your components</p></li><li><p>how to (docker) build them</p></li><li><p>what container should start first</p></li><li><p>networks (who can talk to whom)</p></li><li><p>(data) volumes</p></li><li><p>Security restrictions</p></li><li><p>Etc.</p></li></ul></div></li></ul></div></section>
+<section id="__build_ship_and_run"><h2>"Build, Ship and Run"</h2><div class="imageblock" style=""><div class="content"><img src="images/buildShipRun.png" alt="buildShipRun" width="80%"></div></div>
+<aside class="notes"><div class="ulist"><ul><li><p>Build: easier to build application</p></li><li><p>Ship: easier/faster to package and deploy apps</p></li><li><p>Run: easier for microservices/cloud/orchestration</p></li></ul></div></aside></section>
+<section id="_how_to_learn"><h2>How to learn ?</h2><div class="ulist"><ul><li><p>Many tutorials available on-line</p></li><li><p><a href="https://training.docker.com/category/self-paced-online" class="bare">https://training.docker.com/category/self-paced-online</a></p><div class="ulist"><ul><li><p>Developer</p><div class="ulist"><ul><li><p>Beginner Linux Containers</p></li><li><p>Beginner Windows Containers</p></li><li><p>Intermediate (both Linux and Windows)</p></li></ul></div></li><li><p>Operations</p><div class="ulist"><ul><li><p>Beginner</p></li><li><p>Intermediate</p></li></ul></div></li></ul></div></li></ul></div></section>
+<section id="_how_to_learn_2"><h2>How to learn ?</h2><div class="ulist"><ul><li><p>Docker playground</p><div class="ulist"><ul><li><p><a href="http://play-with-docker.com/" class="bare">http://play-with-docker.com/</a></p></li></ul></div></li></ul></div></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Where is Docker heading ?</p></p></div></section>
+<section id="_docker_inc"><h2>Docker Inc.</h2><div class="ulist"><ul><li class="fragment"><p>Docker has been surprised by this techno "flare"</p></li><li class="fragment"><p>Very, very lively Open Source community</p></li><li class="fragment"><p>"Batteries included"</p></li><li class="fragment"><p>Standardization (RunC, etc.)</p></li></ul></div></section>
+<section id="_well_grounded_approach"><h2>Well grounded approach</h2><div class="ulist"><ul><li><p>Coming from the web hosting world</p></li></ul></div>
+<div class="imageblock" style=""><div class="content"><img src="images/docker_unusable_scy.jpg" alt="docker unusable scy" width="80%"></div></div></section>
+<section id="_status"><h2>Status</h2><div class="ulist"><ul><li><p>Was good for development and integration</p></li><li><p>Start to be usable for Real Life Run</p><div class="ulist"><ul><li><p>Since December 2015</p></li></ul></div></li></ul></div></section>
+<section id="_status_2"><h2>Status</h2><div class="ulist"><ul><li><p>Start to offer enterprise level solutions</p><div class="ulist"><ul><li><p>"Docker Datacenter"</p><div class="ulist"><ul><li><p>Trusted Registry (Image scanning, sig/auth)</p></li><li><p>Docker Universal Control Plane</p></li></ul></div></li><li><p>Docker Cloud</p></li></ul></div></li></ul></div></section>
+<section data-background="white"></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Docker for Java builders</p></p></div></section>
+<section id="_integration_tests"><h2>integration tests</h2><div class="imageblock" style=""><div class="content"><img src="images/SytemUnderTest.png" alt="SytemUnderTest" width="110%"></div></div></section>
+<section id="_maven_integration"><h2>maven integration</h2><div class="ulist"><ul><li><p>using <code>fabric8io/docker-maven-plugin</code></p></li></ul></div></section>
+<section id="_maven_sequence"><h2>maven sequence</h2><div class="ulist"><ul><li><p>pre-integration-test</p><div class="ulist"><ul><li><p>execute Docker "build" and "start" goals</p></li><li><p>execute FlyWay migration</p></li></ul></div></li><li><p>integration-test</p><div class="ulist"><ul><li><p>execute Failsafe "verify" goal</p></li><li><p>integration test make extensive use of DBunit</p></li></ul></div></li><li><p>post-integration-test</p><div class="ulist"><ul><li><p>execute Docker "stop" goal</p></li></ul></div></li></ul></div></section>
+<section id="_maven_integration_2"><h2>Maven integration</h2><div class="ulist"><ul><li><p>additional options</p><div class="ulist"><ul><li><p>(networking, volumes, docker-compose)</p></li></ul></div></li><li><p>fits nicely in Jenkins</p><div class="ulist"><ul><li><p>especially V2 and pipeline</p></li><li><p>(but this is an other story)</p></li></ul></div></li></ul></div></section>
+<section id="_base_images"><h2>Base images</h2><div class="ulist"><ul><li><p>several base images are available, choose what is best suited</p><div class="ulist"><ul><li><p>openjdk (jdk and jre)</p></li><li><p>openjdk:alpine</p></li><li><p>maven</p></li><li><p>Oracle JDK/JRE is not available from the shelf anymore. Need to build it yourself</p></li></ul></div></li></ul></div></section>
+<section id="_deployment_model"><h2>deployment model</h2><div class="ulist"><ul><li><p>app-server</p></li><li><p>embedded (self contained JAR)</p></li></ul></div></section>
+<section id="_installation_modes_test_modes"><h2>installation modes/test modes</h2><div class="ulist"><ul><li><p>add the JAR in the right directory</p></li><li><p>execute the app installation script at image build time</p></li><li><p>execute the app installation script at container run</p></li></ul></div></section>
+<section id="_single_purpose_jvm"><h2>single purpose JVM</h2><div class="ulist"><ul><li><p>thinks it is alone in the world</p><div class="ulist"><ul><li><p>JVM defaults based on the machine characteristics</p></li></ul></div></li><li><p>watch out</p><div class="ulist"><ul><li><p>several JVMs (in Docker) are running on the same machine</p></li></ul></div></li></ul></div></section>
+<section id="_jvm_configuration"><h2>JVM configuration</h2><div class="ulist"><ul><li><p>as on a physical host you need to specifiy/limit the memory/cpu requirement of your JVM</p><div class="ulist"><ul><li><p>Docker offer the same tools. use them</p></li><li><p>orchestrator like mesos or kubernetes can help you for this</p></li></ul></div></li><li><p>beware of Docker exec in Production</p></li></ul></div></section>
+<section id="_docker_in_production"><h2>Docker in Production</h2><div class="ulist"><ul><li><p>my point of view of Docker in Production</p><div class="ulist"><ul><li><p>you need to have a very good understanding of what you do</p></li><li><p>still in the early phase</p></li><li><p>Docker works very well for <strong>state less</strong> application</p></li><li><p>State full (with databases, etc) still in infancy. Recent announcement very promising</p></li></ul></div></li></ul></div></section>
+<section data-background="images/ContainerBackground.jpg"><div class="paragraph"><p><p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Is Docker secure in Production ?</p></p></div></section>
+<section><div class="paragraph"><p>This is, in general, the reaction&#8230;&#8203;</p></div></section>
+<section><div class="imageblock" style=""><div class="content"><img src="images/panique.jpg" alt="afraid" width="70%"></div></div></section>
+<section id="_the_situation_with_docker"><h2>the situation with Docker</h2><div class="imageblock" style=""><div class="content"><img src="images/docker_shark.jpg" alt="docker_shark" width="80%"></div></div></section>
+<section id="_what_is_he_looking_for"><h2>What is he looking for?</h2><div class="imageblock" style=""><div class="content"><img src="images/hacker.jpg" alt="hacker"></div></div></section>
+<section id="_what_is_he_looking_for_2"><h2>What is he looking for?</h2><div class="ulist"><ul><li><p>(user) Data</p></li><li><p>Access other systems</p></li><li><p>Privilege elevation</p></li></ul></div>
+<div class="paragraph"><p><span class="image"><img src="images/treasure.jpg" alt="treasure" width="300"></span></p></div></section>
+<section id="_what_are_the_dangers_with_docker"><h2>What are the dangers with Docker?</h2><div class="ulist"><ul><li class="fragment"><p>Kernel exploits</p></li><li class="fragment"><p>Denial of service attack</p></li><li class="fragment"><p>Container breakout</p></li><li class="fragment"><p>Poisoned images</p></li><li class="fragment"><p>Compromising Secrets</p></li></ul></div>
+<aside class="notes"><div class="ulist"><ul><li><p>Amplification.</p></li><li><p>un container peut tout bloquer</p></li><li><p>sortir</p></li><li><p>Poisoned images</p></li><li><p>access DB</p></li></ul></div></aside></section>
+<section id="_is_docker_secure"><h2>Is Docker "secure" ?</h2><div class="ulist"><ul><li><p>A lot of expectations, of illusions</p></li><li><p>"Silver bullet"</p></li><li><p>Competition positioning (VM, Configuration Mgt)</p></li><li><p>Enviousness</p></li></ul></div></section>
+<section id="__container_do_not_contain"><h2>"Container do not contain !"</h2><div class="ulist"><ul><li><p>Wrong perception by the "public"</p></li><li><p>Tremendous progress in 3 years</p><div class="ulist"><ul><li><p>but usable&#8230;&#8203;</p></li></ul></div></li></ul></div>
+<aside class="notes"><div class="paragraph"><p>utiliser techno pour ce qu&#8217;elle est
+préoccupation initiale
+(early adopters en prod): env mutualisé/cloud</p></div></aside></section>
+<section id="_equipped_with_security_tools"><h2>Equipped with security tools</h2></section>
+<section id="_in_particular"><h2>In particular</h2><div class="ulist"><ul><li><p>Cap drop</p></li><li><p>User namespace</p></li><li><p>selinux / apparmor</p></li></ul></div></section>
+<section id="_capability_drop"><h2>Capability Drop</h2><div class="ulist"><ul><li><p>options to the "Docker run"</p></li><li><p>goes beyond the root/non-root dichotomy</p></li><li><p>example: container with NTP</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code>docker run --cap-drop ALL --cap-add SYS_TIME ntpd</code></pre></div></div></section>
+<section id="_selinux_apparmor"><h2>Selinux / apparmor</h2><div class="ulist"><ul><li><p>profiles are called at each "Docker run"</p></li><li><p>Allow to go much further in the granularity</p><div class="ulist"><ul><li><p>this program (ex ping) has no access to the network</p></li></ul></div></li></ul></div></section>
+<section><div class="listingblock"><div class="content"><pre class="highlight"><code>#include &lt;tunables/global&gt;
+
+profile docker-default flags=(attach_disconnected,mediate_deleted) {
+
+  #include &lt;abstractions/base&gt;
+
+  network,
+  capability,
+  file,
+  umount,
+
+  deny @{PROC}/{*,**^[0-9*],sys/kernel/shm*} wkx,
+  deny @{PROC}/sysrq-trigger rwklx,
+
+  deny mount,
+
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+}</code></pre></div></div></section>
+<section id="__clean_containers" data-background="images/container_wall.jpg"><h2>"Clean" containers?</h2></section>
+<section><div class="ulist"><ul><li><p>Malicious contents</p></li><li><p>Contains vulnerabilities or bugged applications</p></li></ul></div></section>
+<section id="_trusted_registry"><h2>Trusted Registry</h2><div class="ulist"><ul><li><p>Systematic use of TLS</p></li><li><p>Re-enforcement of the layers integrity</p></li><li><p>Upgraded with version 1.10</p></li></ul></div></section>
+<section id="_notary"><h2>Notary</h2><div class="ulist"><ul><li><p>System of image signature and its validation</p><div class="ulist"><ul><li><p>Validation of the author and content non alteration</p></li></ul></div></li><li><p>Protection Against Image Forgery</p></li><li><p>Protection Against Replay Attacks</p></li><li><p>Protection Against Key Compromise</p><div class="ulist"><ul><li><p>Clever usage of physical key storage</p></li></ul></div></li></ul></div></section>
+<section id="_nautilus"><h2>Nautilus</h2><div class="ulist"><ul><li><p>(now called "Docker Security Scanning")</p></li><li><p>Docker image scanner</p><div class="ulist"><ul><li><p>vulnerabilities (CVE check)</p></li><li><p>Licence validation</p></li><li><p>Image Optimisation</p></li><li><p>Simplified functional tests</p></li></ul></div></li></ul></div></section>
+<section id="_recommendations"><h2>Recommendations</h2><div class="imageblock" style=""><div class="content"><img src="images/prevention.jpg" alt="prevention" width="550"></div></div></section>
+<section id="_recommendations_2"><h2>Recommendations</h2><div class="ulist"><ul><li class="fragment"><p>Keep your host/images up-to-date</p></li><li class="fragment"><p>"Bulkheading"</p><div class="ulist"><ul><li><p>Seperate disk partition for Docker</p></li><li><p>Don&#8217;t run other (non-Docker) applications on the same host</p></li><li><p>Container in a VM ?</p></li></ul></div></li><li class="fragment"><p>Limit inter-container communications</p></li><li class="fragment"><p>log/audit trails</p></li><li class="fragment"><p>Access control</p></li></ul></div></section>
+<section id="_recommendations_3"><h2>Recommendations</h2><div class="ulist"><ul><li class="fragment"><p>Do not use "priviliged" if it is not necessary</p></li><li class="fragment"><p>Applicative users in the containers</p></li><li class="fragment"><p>Where are my images coming from ? are they up-to-date ?</p></li><li class="fragment"><p>Access rights on the files</p></li></ul></div></section>
+<section id="_conclusions"><h2>Conclusions</h2><div class="ulist"><ul><li><p>"Is Docker 'secure' ?"</p><div class="ulist"><ul><li><p>No more or less then the door of an apartment</p></li></ul></div></li><li><p>Security is everyone&#8217;s business : DevOps + SecOps</p></li></ul></div></section>
+<section id="_thank_you"><h2>Thank You !</h2></section>
+<section id="_contact_info"><h2>Contact info</h2><div class="imageblock" style=""><div class="content"><img src="images/capt_igloo_cleaned.jpg" alt="captain" width="200"></div></div>
+<div class="ulist"><ul><li><p><a href="mailto:jean-marc@meessen-web.org">jean-marc@meessen-web.org</a></p></li><li><p>Twitter: @jm_meessen</p></li></ul></div></section>
+<section data-background="images/questions.jpg"></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: false,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'league',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'slide',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 960,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>
