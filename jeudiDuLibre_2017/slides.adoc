@@ -51,16 +51,28 @@ pass:[<p style="font-size:250%">...And it became true !</p>]
 [%step]
 * Jean-Marc MEESSEN
 * Brussels, Belgium
-* "Brol Engineer" @ Worldline
+* Customer Success Manager @ Cloudbees
+** (Since January)
+* Before
 ** Senior ESB Java Developer
 ** Development Infrastructure Expert
 ** Mentor
-* Starting in January at Cloudbees
 
 == !
 // source: http://www.youtube.com/watch?v=ImKox57DJXI
 // source: http://www.coolfood.be/test/media/catalog/product/cache/1/small_image/9df78eab33525d08d6e5fb8d27136e95/i/g/igl50150506_-_10_fish_sticks_300g_hr_selenium_13.jpg
 video::images/CaptainIglo.mp4[data-autoplay, video, width=800, poster="images/fishSticks.jpg"]
+
+== Contact info
+
+image::images/capt_igloo_cleaned.jpg[captain, 200]
+
+* jean-marc@meessen-web.org
+* Twitter: @jm_meessen
+
+{nbsp}
+
+image::images/cc-by-sa.png[cc-by-sa,150]
 
 == And you ? ==
 
@@ -87,7 +99,9 @@ Actually things aren't that bad
 
 * What are "containers" ?
 * How to start ?
-* Docker for the Java Dev
+* The principles (single container)
+* Multiple containers (Docker Compose)
+* Multi-hosts (Docker Swarm)
 
 [data-background="images/ContainerBackground.jpg"]
 == !
@@ -145,6 +159,14 @@ image::images/docker_overview.jpg[]
 
 == What Docker solves
 
+image::images/commitstrip-no-devops.png[width=80%]
+
+
+== What Docker solves
+
+image::images/commitstrip-devops.png[width=80%]
+== What Docker solves
+
 [%step]
 * Escape the dependencies hell
 * Fast iterative Infrastructure improvement
@@ -153,8 +175,6 @@ image::images/docker_overview.jpg[]
 * easy onboarding of Devs.
 * "Own test environment"
 
-
-
 [data-background="images/ContainerBackground.jpg"]
 == !
 
@@ -162,16 +182,27 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 == Need a container enabled "Kernel"
 
+* 64-bit Linux installation
+* version 3.10 or higher of the Linux kernel
+* recommend using the Docker repositories
+** See the Docker online documentation
 
-== And for Windows or Mac OS X ?
+== And on Windows or Mac OS X ?
 
 [%step]
-* Install a virtual machine (ex VirtualBox)
+* Installed in a virtual machine (ex VirtualBox)
+** Running Linux
 * Ready made bundles:
-** Docker Toolbox
-** New, better integrated, clients
+** Docker Toolbox (Mac / Windows)
+** Docker for Mac (native, uses `xhyve`)
 * Using (corporate) proxies: advanced topic
 
+== Docker for Windows
+
+* "on" != "for"
+* Runs native Windows applications 
+* with Hyper-V
+* 64bit Windows 10 Pro, Enterprise and Education
 
 [data-background="images/ContainerBackground.jpg"]
 == !
