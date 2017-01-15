@@ -36,7 +36,6 @@ That I don't fear to break !
 DEVOPS is a culture.
 --
 
-
 == !
 
 pass:[<p style="font-size:250%">...And it became true !</p>]
@@ -45,6 +44,14 @@ pass:[<p style="font-size:250%">...And it became true !</p>]
 [data-background="images/docker_toolbox.png"]
 == !
 
+== !
+
+image::images/commitstrip-no-devops.png[width=80%]
+
+
+== !
+
+image::images/commitstrip-devops.png[width=80%]
 
 == Hello ! ==
 
@@ -157,14 +164,7 @@ image::images/docker_overview.jpg[]
 * one application works on Ubuntu with Python 2
 * second application works on Centos 7.2 with Python 3
 
-== What Docker solves
 
-image::images/commitstrip-no-devops.png[width=80%]
-
-
-== What Docker solves
-
-image::images/commitstrip-devops.png[width=80%]
 == What Docker solves
 
 [%step]
