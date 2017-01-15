@@ -60,7 +60,7 @@ image::images/commitstrip-devops.png[width=80%]
 * Brussels, Belgium
 * Customer Success Manager @ Cloudbees
 ** (Since January)
-* Before
+* Before (@ Worldline)
 ** Senior ESB Java Developer
 ** Development Infrastructure Expert
 ** Mentor
@@ -180,7 +180,7 @@ image::images/docker_overview.jpg[]
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How to start ?</p>]
 
-== Need a container enabled "Kernel"
+== Need a container-enabled "Kernel"
 
 * 64-bit Linux installation
 * version 3.10 or higher of the Linux kernel
@@ -209,8 +209,13 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How does it work ?</p>]
 
-== Let me show you ....
+== Some theory....
 
+== !
+
+image::images/DockerFileSystem.jpg[width=80%]
+
+== Let me show you ....
 
 == How do you get images ?
 
@@ -245,6 +250,11 @@ ADD app.js /var/www/app.js
 CMD ["/usr/bin/node", "/var/www/app.js"]
 ----
 
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Multi-container infra</p>]
+
 == Describe a complete Infrastructure
 
 * Complex systems
@@ -264,6 +274,23 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
 ** Security restrictions
 ** Etc.
 
+== docker-compose
+
+* three step process
+** dockerfile of individual images
+** Define services
+*** Run parameters
+*** Network Relationships
+*** dependencies
+** `docker-compose up`
+
+== docker-compose
+
+* Commands to manage the whole application lifecycle
+** Start, stop and rebuild services
+** View the status of running services
+** Stream the log output of running services
+** Run a one-off command on a service
 
 == "Build, Ship and Run"
 
