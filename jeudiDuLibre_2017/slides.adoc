@@ -127,25 +127,41 @@ Docker Container is an analogy to the revolution in the Shipping industry brough
 
 == !
 
+image::images\also-a-matrix-from-hell.jpg[width=80%]
+
+== !
+
 image::images\theBox.png[width=80%]
 
 == !
 
 image::images\Transport-Multimodal-Service.jpg[width=80%]
 
+== !
+
+image::images\the-matrix-from-hell.jpg[width=80%]
+
+
 == Docker Containers
 
+[%step]
 * is not a virtualization technique,
 * rather an *isolation* technology.
+
+
+== !
+
+image::images\vm-and-container.png[width=80%]
 
 == Docker Containers are :
 
 [%step]
-* cgroups (control groups)
-** limits CPU, memory, IOs, etc
 * NameSpaces
 ** isolates and virtualizes system resources
 *** (process, mounts, networking)
+* cgroups (control groups)
+** limits CPU, memory, IOs, etc
+
 
 == !
 
@@ -157,6 +173,7 @@ image::images/docker_overview.jpg[]
 - Containers are old, LXC (OpenVZ) been around for some time.
 - Container load fast
 --
+
 
 == Applications packaged with system dependencies
 
