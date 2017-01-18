@@ -151,7 +151,12 @@ image::images\the-matrix-from-hell.jpg[width=80%]
 
 == !
 
-image::images\vm-and-container.png[width=80%]
+image::images\vm-and-container.png[width=100%]
+
+== !
+
+image::images\container_vs_vm.jpg[width=110%]
+
 
 == Docker Containers are :
 
@@ -162,17 +167,9 @@ image::images\vm-and-container.png[width=80%]
 * cgroups (control groups)
 ** limits CPU, memory, IOs, etc
 
-
 == !
 
-image::images/docker_overview.jpg[]
-
-[NOTE.speaker]
---
-- Draw the attention on the Docker process.
-- Containers are old, LXC (OpenVZ) been around for some time.
-- Container load fast
---
+image::images\why-docker-lightweight.jpg[width=110%]
 
 
 == Applications packaged with system dependencies
@@ -197,12 +194,21 @@ image::images/docker_overview.jpg[]
 
 pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">How to start ?</p>]
 
+== sandbox
+
+*  http://play-with-docker.com/
+** Validate captcha
+** 4 hours to play with "Docker instances"
+** Just click "Add a new instance"
+** Machine starts and you have access to the command line
+
+
 == Need a container-enabled "Kernel"
 
 * 64-bit Linux installation
 * version 3.10 or higher of the Linux kernel
 * recommend using the Docker repositories
-** See the Docker online documentation
+** See the Docker online documentation https://www.docker.com/products/overview
 
 == And on Windows or Mac OS X ?
 
@@ -221,6 +227,7 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 * with Hyper-V
 * 64bit Windows 10 Pro, Enterprise and Education
 
+
 [data-background="images/ContainerBackground.jpg"]
 == !
 
@@ -231,6 +238,14 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 == !
 
 image::images/DockerFileSystem.jpg[width=80%]
+
+== !
+
+image::images\basics-of-docker-system.jpg[width=100%]
+
+== !
+
+image::images\changes-and-updates.jpg[width=110%]
 
 == Let me show you ....
 
@@ -266,6 +281,18 @@ ADD app.js /var/www/app.js
 
 CMD ["/usr/bin/node", "/var/www/app.js"]
 ----
+
+== networking
+
+== !
+
+image::images/docker_net.png[]
+
+== storage
+
+
+
+
 
 [data-background="images/ContainerBackground.jpg"]
 == !
@@ -370,74 +397,11 @@ image::images/docker_unusable_scy.jpg[width=80%]
 *** Docker Universal Control Plane
 ** Docker Cloud
 
-[data-background=white]
-== !
-
 [data-background="images/ContainerBackground.jpg"]
 == !
 
-pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Docker for Java builders</p>]
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Docker in Production</p>]
 
-== integration tests
-
-image::images/SytemUnderTest.png[width=110%]
-
-== maven integration
-
-* using `fabric8io/docker-maven-plugin`
-
-== maven sequence
-
-* pre-integration-test
-** execute Docker "build" and "start" goals
-** execute FlyWay migration
-* integration-test
-** execute Failsafe "verify" goal
-** integration test make extensive use of DBunit
-* post-integration-test
-** execute Docker "stop" goal
-
-== Maven integration
-
-* additional options
-** (networking, volumes, docker-compose)
-* fits nicely in Jenkins
-** especially V2 and pipeline
-** (but this is an other story)
-
-== Base images
-
-* several base images are available, choose what is best suited
-** openjdk (jdk and jre)
-** openjdk:alpine
-** maven
-** Oracle JDK/JRE is not available from the shelf anymore. Need to build it yourself
-
-== deployment model
-
-* app-server
-* embedded (self contained JAR)
-
-
-== installation modes/test modes
-
-* add the JAR in the right directory
-* execute the app installation script at image build time
-* execute the app installation script at container run
-
-== single purpose JVM
-
-* thinks it is alone in the world
-** JVM defaults based on the machine characteristics
-* watch out
-** several JVMs (in Docker) are running on the same machine
-
-== JVM configuration
-
-* as on a physical host you need to specifiy/limit the memory/cpu requirement of your JVM
-** Docker offer the same tools. use them
-** orchestrator like mesos or kubernetes can help you for this
-* beware of Docker exec in Production
 
 == Docker in Production
 * my point of view of Docker in Production
