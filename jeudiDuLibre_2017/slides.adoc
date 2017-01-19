@@ -249,6 +249,7 @@ image::images\changes-and-updates.jpg[width=110%]
 
 == Let me show you ....
 
+
 == How do you get images ?
 
 [%step]
@@ -290,7 +291,10 @@ image::images/docker_net.png[]
 
 == storage
 
-
+* Stateless, statefull, persistence
+* Storage drivers
+* map a local directory as a volume
+* create and share a data volume
 
 
 
@@ -336,16 +340,29 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 ** Stream the log output of running services
 ** Run a one-off command on a service
 
-== "Build, Ship and Run"
+== Demo
 
-image::images/buildShipRun.png[width=80%]
+image::images\composeDemo.png[width=100%]
 
-[NOTE.speaker]
---
-- Build: easier to build application
-- Ship: easier/faster to package and deploy apps
-- Run: easier for microservices/cloud/orchestration
---
+== Try it
+
+* connect to wifi `PI-LAB` with password `raspberry`
+* in browser, connect to `http://rpi3-1.local:5000` to vote.
+* connect to `http://rpi3-1.local:5001` to view results
+
+[data-background="images/ContainerBackground.jpg"]
+== !
+
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Multi-node infra</p>]
+
+== !
+
+image::images\docker-swarm-1.jpg[width=100%]
+
+== !
+
+image::images\swarm-arch.jpg[width=100%]
+
 
 == How to learn ?
 
@@ -397,6 +414,12 @@ image::images/docker_unusable_scy.jpg[width=80%]
 *** Docker Universal Control Plane
 ** Docker Cloud
 
+== Containerus Bellum
+
+image::images/dockerecosystem-octotechnology_v2.jpg[width=70%]
+
+http://blog.octo.com/containerus-bellum-ou-la-chronique-des-hostilites-dans-lecosysteme-docker/
+
 [data-background="images/ContainerBackground.jpg"]
 == !
 
@@ -404,18 +427,18 @@ pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif
 
 
 == Docker in Production
-* my point of view of Docker in Production
-** you need to have a very good understanding of what you do
-** still in the early phase
-** Docker works very well for **state less** application
-** State full (with databases, etc) still in infancy. Recent announcement very promising
+
+* you need to have a very good understanding of what you do
+* still in the early phase
+* Docker works very well for **state less** application
+* State full (with databases, etc) still in infancy. Recent announcement very promising
 
 
 
 [data-background="images/ContainerBackground.jpg"]
 == !
 
-pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Is Docker secure in Production ?</p>]
+pass:[<p style="font-size:400%; font-family: 'League Gothic', Impact, sans-serif;">Is Docker secure enough for Production ?</p>]
 
 == !
 

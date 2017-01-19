@@ -6,3 +6,30 @@ docker run -d --name mydemo demo:latest
 docker ps
 docker logs mydemo
 docker stop mydemo
+
+docker images
+docker pull alpine:3.5
+docker images # Quelles différences ?
+docker pull alpine:latest
+docker images # Quelles différences ?
+docker tag alpine:3.5 my-alpine:3.5.0-local
+docker images # Quelles différences ?
+
+docker ps
+docker run alpine:3.5 echo "Bonjour depuis un containeur"
+cat /etc/os-release
+docker run -ti alpine:3.4 /bin/sh
+#/ cat /etc/os-release
+#/ whoami
+#/ ps aux
+#/ exit
+$ docker run -d nginx:1.10-alpine
+$ docker run -d --name webserver-1 nginx:1.10-alpine
+$ docker ps
+$ docker inspect nginx:1.10-alpine  # IMAGE
+$ docker inspect webserver-1        # Container
+# Explorons d'autres options
+$ docker ps -a
+$ docker ps -q
+
+
